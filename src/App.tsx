@@ -413,31 +413,9 @@ function App() {
               <div className="absolute left-0 top-16 h-[26rem] w-[26rem] rounded-full bg-white/[0.58] blur-[90px]" />
 
               <div className="relative mx-auto flex min-h-[calc(100svh-7rem)] max-w-7xl flex-col">
-                <div className="flex flex-wrap items-center justify-between gap-4 border-b border-brand-ink/[0.08] pb-5">
-                  <div className="flex items-center gap-4">
-                    <BrandMark />
-                    <div>
-                      <p className="text-xs uppercase tracking-[0.3em] text-brand-ink/[0.42]">
-                        Hongares
-                      </p>
-                      <p className="font-display text-3xl leading-none">
-                        Homes with context
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-                    <span className="hero-meta-chip">Social real estate</span>
-                    <span className="hero-meta-chip">Valencia</span>
-                  </div>
-                </div>
-
-                <div className="grid flex-1 gap-10 py-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-14">
+                <div className="grid flex-1 gap-10 py-4 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-14 lg:py-8">
                   <Reveal className="max-w-3xl">
-                    <span className="eyebrow border-brand-ink/[0.08] bg-brand-paper/80 text-brand-clay">
-                      Valencia / Gestion de alquiler especializada
-                    </span>
-                    <h1 className="mt-6 text-balance font-display text-[clamp(4rem,8vw,6.6rem)] leading-[0.9] tracking-[-0.045em] text-brand-ink">
+                    <h1 className="text-balance font-display text-[clamp(4rem,8vw,6.6rem)] leading-[0.9] tracking-[-0.045em] text-brand-ink">
                       Alquilar con rigor. <br />
                       Habitar con dignidad.
                     </h1>
