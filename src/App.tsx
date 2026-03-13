@@ -7,11 +7,20 @@ import {
   useTransform,
   type Variants,
 } from 'framer-motion'
-import { ArrowRight, ArrowUpRight, Menu, Star, X } from 'lucide-react'
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Mail,
+  MapPin,
+  Menu,
+  Phone,
+  Star,
+  X,
+} from 'lucide-react'
 import caras1Image from './assets/caras1.jpg'
 import caras2Image from './assets/caras2.jpg'
 import caras3Image from './assets/caras3.jpg'
-import section1Image from './assets/section1.jpg'
+import discoverVideo from './assets/video.mp4'
 
 const navigation = [
   { label: 'Home', href: '#inicio' },
@@ -22,6 +31,9 @@ const navigation = [
 ]
 
 const mailHref = 'mailto:francisco@hongares.com'
+const phoneHref = 'tel:+34605592599'
+const mapHref =
+  'https://maps.google.com/?q=Calle+Santa+Cruz+de+Tenerife+7,+Valencia'
 
 const partnerLogos = [
   'Casa Clara',
@@ -73,6 +85,30 @@ const reviews = [
   {
     title: 'ONGs y programas',
     text: 'Cuando hay urgencia y varias partes implicadas, tener un interlocutor claro cambia por completo la operativa.',
+  },
+]
+
+const contactCards = [
+  {
+    label: 'Correo directo',
+    value: 'francisco@hongares.com',
+    detail: 'Para propietarios, familias migrantes y organizaciones.',
+    href: mailHref,
+    icon: Mail,
+  },
+  {
+    label: 'Telefono',
+    value: '605 592 599',
+    detail: 'Respuesta rapida para casos y coordinacion.',
+    href: phoneHref,
+    icon: Phone,
+  },
+  {
+    label: 'Base local',
+    value: 'Calle Santa Cruz de Tenerife 7, Valencia',
+    detail: 'Presencia local y seguimiento real en la ciudad.',
+    href: mapHref,
+    icon: MapPin,
   },
 ]
 
@@ -340,10 +376,14 @@ function App() {
 
           <Reveal delay={0.08} className="mt-8">
             <div className="media-frame">
-              <img
-                src={section1Image}
-                alt="Equipe Hongares em reuniao"
-                className="h-full w-full object-cover object-[center_38%]"
+              <video
+                src={discoverVideo}
+                className="h-full w-full object-cover object-center"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
               />
               <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.1),rgba(0,0,0,0.34))]" />
               <div className="absolute left-6 top-4 text-[clamp(4.6rem,11vw,8rem)] font-semibold leading-none tracking-[-0.085em] text-white sm:left-8 sm:top-6">
@@ -453,41 +493,132 @@ function App() {
             ))}
           </div>
         </section>
+
+        <section id="contacto" className="page-shell pb-20 pt-2 sm:pb-24 lg:pb-28">
+          <Reveal className="contact-cta">
+            <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
+              <div className="max-w-[36rem]">
+                <p className="text-[0.74rem] font-semibold uppercase tracking-[0.22em] text-[#4b6bff]">
+                  Contacto
+                </p>
+                <h2 className="mt-4 text-[clamp(2.8rem,5.7vw,4.9rem)] font-semibold leading-[0.93] tracking-[-0.075em] text-[#111217]">
+                  Si el caso necesita contexto, aqui empieza la conversacion.
+                </h2>
+                <p className="mt-5 max-w-[32rem] text-[1rem] leading-7 text-black/58">
+                  Hongares trabaja con propietarios, familias y entidades que
+                  necesitan una gestion clara, local y bien acompanada.
+                </p>
+
+                <div className="mt-8 flex flex-wrap gap-4">
+                  <a href={mailHref} className="button-primary">
+                    Escribir ahora
+                  </a>
+                  <a href={phoneHref} className="button-outline">
+                    Llamar
+                  </a>
+                </div>
+              </div>
+
+              <div className="grid gap-4">
+                {contactCards.map((item, index) => {
+                  const Icon = item.icon
+
+                  return (
+                    <Reveal key={item.label} delay={0.08 * index}>
+                      <a
+                        href={item.href}
+                        target={item.href.startsWith('http') ? '_blank' : undefined}
+                        rel={item.href.startsWith('http') ? 'noreferrer' : undefined}
+                        className="contact-card"
+                      >
+                        <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#eef3ff] text-[#4b6bff]">
+                          <Icon className="h-5 w-5" />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-black/38">
+                            {item.label}
+                          </p>
+                          <p className="mt-2 text-[1.05rem] font-semibold leading-6 tracking-[-0.03em] text-[#111217]">
+                            {item.value}
+                          </p>
+                          <p className="mt-2 text-sm leading-6 text-black/54">
+                            {item.detail}
+                          </p>
+                        </div>
+                        <div className="contact-card-arrow">
+                          <ArrowUpRight className="h-4 w-4" />
+                        </div>
+                      </a>
+                    </Reveal>
+                  )
+                })}
+              </div>
+            </div>
+          </Reveal>
+        </section>
       </main>
 
-      <footer
-        id="contacto"
-        className="border-t border-black/[0.06] bg-white pb-10 pt-8"
-      >
-        <div className="page-shell flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-3">
-            <BrandMark />
+      <footer className="border-t border-black/[0.06] bg-[#fafbfe] pb-8 pt-10">
+        <div className="page-shell">
+          <div className="grid gap-10 lg:grid-cols-[1.2fr_0.7fr_0.9fr]">
+            <div className="max-w-[24rem]">
+              <div className="flex items-center gap-3">
+                <BrandMark />
+                <div>
+                  <p className="text-[1rem] font-semibold tracking-[-0.04em] text-[#111217]">
+                    Hongares
+                  </p>
+                  <p className="text-sm text-black/46">
+                    Vivienda, migracion y confianza en Valencia.
+                  </p>
+                </div>
+              </div>
+              <p className="mt-5 text-sm leading-7 text-black/56">
+                Una agencia que acompana operaciones de alquiler donde hace falta
+                traducir requisitos, ordenar expectativas y sostener confianza.
+              </p>
+            </div>
+
             <div>
-              <p className="text-sm font-semibold tracking-[-0.03em] text-[#111217]">
-                Hongares
+              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-black/38">
+                Navegacion
               </p>
-              <p className="text-sm text-black/50">
-                Vivienda, migracion y confianza en Valencia.
+              <div className="mt-4 grid gap-3 text-sm text-black/58">
+                {navigation.map((item) => (
+                  <a key={item.label} href={item.href} className="footer-link">
+                    {item.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-black/38">
+                Contacto
               </p>
+              <div className="mt-4 grid gap-3 text-sm text-black/58">
+                <a href={phoneHref} className="footer-link">
+                  605 592 599
+                </a>
+                <a href={mailHref} className="footer-link">
+                  francisco@hongares.com
+                </a>
+                <a
+                  href={mapHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="footer-link inline-flex items-center gap-2"
+                >
+                  Valencia
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-4 text-sm text-black/60">
-            <a href="tel:+34605592599" className="footer-link">
-              605 592 599
-            </a>
-            <a href={mailHref} className="footer-link">
-              francisco@hongares.com
-            </a>
-            <a
-              href="https://maps.google.com/?q=Calle+Santa+Cruz+de+Tenerife+7,+Valencia"
-              target="_blank"
-              rel="noreferrer"
-              className="footer-link inline-flex items-center gap-2"
-            >
-              Valencia
-              <ArrowRight className="h-4 w-4" />
-            </a>
+          <div className="mt-10 flex flex-col gap-4 border-t border-black/[0.06] pt-6 text-sm text-black/44 sm:flex-row sm:items-center sm:justify-between">
+            <p>© 2026 Hongares. Todos los derechos reservados.</p>
+            <p>Gestion de alquiler con sensibilidad humana y criterio local.</p>
           </div>
         </div>
       </footer>
