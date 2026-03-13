@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import type { ChangeEvent, FormEvent, ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import {
   AnimatePresence,
   motion,
@@ -7,224 +7,87 @@ import {
   useTransform,
   type Variants,
 } from 'framer-motion'
-import {
-  ArrowRight,
-  ArrowUpRight,
-  Building2,
-  Handshake,
-  House,
-  Mail,
-  MapPin,
-  Menu,
-  Phone,
-  ShieldCheck,
-  Sparkles,
-  Users2,
-  X,
-} from 'lucide-react'
+import { ArrowRight, ArrowUpRight, Menu, Star, X } from 'lucide-react'
+import caras1Image from './assets/caras1.jpg'
+import caras2Image from './assets/caras2.jpg'
+import caras3Image from './assets/caras3.jpg'
+import section1Image from './assets/section1.jpg'
 
 const navigation = [
-  { label: 'Sobre', href: '#posicionamiento' },
-  { label: 'Para quien es', href: '#audiencias' },
-  { label: 'Servicios', href: '#servicios' },
-  { label: 'Como funciona', href: '#metodo' },
-  { label: 'Impacto', href: '#manifiesto' },
-  { label: 'FAQ', href: '#impacto' },
-  { label: 'Contacto', href: '#contacto' },
+  { label: 'Home', href: '#inicio' },
+  { label: 'About', href: '#resumen' },
+  { label: 'Discover', href: '#discover' },
+  { label: 'Team', href: '#equipo' },
+  { label: 'Contact', href: '#contacto' },
 ]
 
-const heroNotes = [
+const mailHref = 'mailto:francisco@hongares.com'
+
+const partnerLogos = [
+  'Casa Clara',
+  'Puente Social',
+  'Habita Local',
+  'Valencia Base',
+  'Contexto',
+  'Red Hogar',
+  'Nodo Vivienda',
+  'Acogida+',
+  'Clave Casa',
+  'Piso Vivo',
+]
+
+const aboutStats = [
+  { value: '3', label: 'Publicos clave' },
+  { value: '1', label: 'Ciudad de foco' },
+  { value: '360', label: 'Mediacion y seguimiento' },
+  { value: '1', label: 'Interlocutor claro' },
+]
+
+const teamCards = [
   {
-    id: 'propietarios',
-    tag: 'Propietarios',
+    title: 'Mediacion',
+    role: 'Propietarios y familias',
+    image: caras1Image,
+  },
+  {
+    title: 'Coordinacion',
+    role: 'Casos, requisitos y tiempos',
+    image: caras2Image,
+  },
+  {
+    title: 'Presencia local',
+    role: 'Valencia y seguimiento real',
+    image: caras3Image,
+  },
+]
+
+const reviews = [
+  {
     title: 'Propietarios',
-    text: 'Rigor, filtrado y acompaniamiento para alquilar con mas tranquilidad.',
-    icon: House,
+    text: 'Hongares reduce friccion, filtra mejor y hace que la conversacion sea mas legible desde el inicio.',
   },
   {
-    id: 'familias-migrantes',
-    tag: 'Familias migrantes',
     title: 'Familias migrantes',
-    text: 'Una gestion cercana para desbloquear acceso real a vivienda en Valencia.',
-    icon: Users2,
+    text: 'La documentacion se entiende mejor, el proceso se ordena y cada paso gana mas contexto y acompanamiento.',
   },
   {
-    id: 'ongs',
-    tag: 'ONGs',
     title: 'ONGs y programas',
-    text: 'Un interlocutor profesional para procesos de acogida con tiempos y contexto complejos.',
-    icon: Building2,
-  },
-]
-
-const aboutTags = ['Valencia', 'Vivienda', 'Confianza']
-
-const brandPositioning = {
-  statement:
-    'Hongares es una agencia de alquiler en Valencia que combina criterio inmobiliario con sensibilidad social.',
-  tone:
-    'Acompana operaciones donde hace falta traducir requisitos, ordenar expectativas y sostener confianza entre partes distintas.',
-  differentialTitle: 'Contexto, mediacion y presencia local',
-  differentialText:
-    'No intermedia desde la distancia. Lee cada caso, filtra con criterio y acompana durante la relacion.',
-}
-
-const audienceCards = [
-  {
-    title: 'Mas claridad desde el principio',
-    text: 'Cada parte entiende mejor que se necesita, que riesgos existen y como avanzar sin fricciones innecesarias.',
-  },
-  {
-    title: 'Menos desgaste en la operacion',
-    text: 'Se reducen malentendidos, tiempos muertos y conversaciones improductivas en momentos sensibles.',
-  },
-  {
-    title: 'Mejor coordinacion entre actores',
-    text: 'Propietarios, familias y entidades trabajan con un mismo hilo conductor y una mediacion estable.',
-  },
-]
-
-const manifestoFlow = [
-  {
-    number: '01',
-    title: 'Confianza para propietarios',
-    text: 'El proceso se vuelve mas legible gracias a filtros, mediacion y acompanamiento sostenido.',
-  },
-  {
-    number: '02',
-    title: 'Acceso mas claro para familias',
-    text: 'La informacion se traduce en pasos concretos y el caso no queda atrapado en ruido administrativo.',
-  },
-  {
-    number: '03',
-    title: 'Capacidad operativa para entidades',
-    text: 'ONGs y programas encuentran un interlocutor que entiende urgencias, tiempos y seguimiento.',
-  },
-  {
-    number: '04',
-    title: 'Relaciones mas sostenibles',
-    text: 'El valor no termina en la firma: la relacion se cuida para durar mejor y con menos tension.',
-  },
-  {
-    number: '05',
-    title: 'Una propuesta dificil de reemplazar',
-    text: 'Hongares ocupa un espacio que pocas agencias trabajan: vivienda, migracion y confianza en la misma operativa.',
-  },
-]
-
-const serviceCards = [
-  {
-    number: '01',
-    title: 'Gestion de alquiler para propietarios',
-    description:
-      'Pensado para propietarios que quieren alquilar con mas criterio, menos friccion y mejor acompanamiento durante todo el proceso.',
-    features: [
-      'Lectura del caso y del escenario de alquiler',
-      'Filtrado y presentacion de perfiles con encaje real',
-      'Mediacion y seguimiento durante la relacion',
-    ],
-    icon: House,
-  },
-  {
-    number: '02',
-    title: 'Busqueda y acompanamiento para familias',
-    description:
-      'Para personas migrantes y familias que necesitan entender requisitos, ordenar documentacion y avanzar con mas claridad.',
-    features: [
-      'Orientacion sobre requisitos y barreras habituales',
-      'Intermediacion con propietarios y agencias',
-      'Acompanamiento en la lectura del proceso de alquiler',
-    ],
-    icon: Users2,
-  },
-  {
-    number: '03',
-    title: 'Coordinacion para ONGs y programas',
-    description:
-      'Un frente operativo para organizaciones que necesitan vivienda, capacidad de respuesta y una conversacion ordenada con todas las partes.',
-    features: [
-      'Coordinacion de casos y necesidades habitacionales',
-      'Traduccion entre entidad, familia y propietario',
-      'Seguimiento mas alla del cierre inicial',
-    ],
-    icon: Building2,
-  },
-]
-
-const processSteps = [
-  {
-    number: '01',
-    title: 'Escucha del caso',
-    text: 'Todo empieza entendiendo contexto, urgencias, expectativas y puntos de riesgo antes de proponer una via de alquiler.',
-  },
-  {
-    number: '02',
-    title: 'Validacion y encaje',
-    text: 'Se revisan condiciones, documentacion y afinidad real entre vivienda, propietario y situacion concreta.',
-  },
-  {
-    number: '03',
-    title: 'Mediacion entre partes',
-    text: 'Hongares ordena la conversacion para que requisitos complejos se conviertan en decisiones mas comprensibles.',
-  },
-  {
-    number: '04',
-    title: 'Seguimiento tras la firma',
-    text: 'La relacion no se abandona al cerrar. Se sostiene con presencia, capacidad de respuesta y lectura humana del proceso.',
-  },
-]
-
-const faqItems = [
-  {
-    title: 'Trabajais solo con personas migrantes?',
-    text: 'No. Hongares trabaja con propietarios, familias y entidades. La especializacion en migracion amplifica su capacidad de mediacion, no la limita.',
-    accent: 'from-brand-clay/25 via-transparent to-transparent',
-  },
-  {
-    title: 'Podeis coordinar casos con ONGs o programas de acogida?',
-    text: 'Si. Ese es uno de los frentes clave: ordenar necesidades habitacionales y sostener una interlocucion clara con todas las partes.',
-    accent: 'from-brand-gold/25 via-transparent to-transparent',
-  },
-  {
-    title: 'Acompanais tambien a propietarios?',
-    text: 'Si. La propuesta incluye lectura del caso, filtrado, mediacion y seguimiento para que alquilar se sienta mas estable y menos incierto.',
-    accent: 'from-brand-sage/25 via-transparent to-transparent',
-  },
-]
-
-const contactItems = [
-  {
-    label: 'Telefono',
-    value: '605 592 599',
-    href: 'tel:+34605592599',
-    icon: Phone,
-  },
-  {
-    label: 'Correo',
-    value: 'francisco@hongares.com',
-    href: 'mailto:francisco@hongares.com',
-    icon: Mail,
-  },
-  {
-    label: 'Direccion',
-    value: 'Calle Santa Cruz de Tenerife 7, Valencia',
-    href: 'https://maps.google.com/?q=Calle+Santa+Cruz+de+Tenerife+7,+Valencia',
-    icon: MapPin,
+    text: 'Cuando hay urgencia y varias partes implicadas, tener un interlocutor claro cambia por completo la operativa.',
   },
 ]
 
 const revealVariants: Variants = {
   hidden: {
     opacity: 0,
-    y: 32,
-    filter: 'blur(12px)',
+    y: 28,
+    filter: 'blur(10px)',
   },
   show: (delay: number = 0) => ({
     opacity: 1,
     y: 0,
     filter: 'blur(0px)',
     transition: {
-      duration: 0.85,
+      duration: 0.8,
       delay,
       ease: [0.22, 1, 0.36, 1],
     },
@@ -237,10 +100,6 @@ type RevealProps = {
   delay?: number
 }
 
-type BrandMarkProps = {
-  light?: boolean
-}
-
 function cn(...classes: Array<string | false | undefined>) {
   return classes.filter(Boolean).join(' ')
 }
@@ -250,7 +109,7 @@ function Reveal({ children, className, delay = 0 }: RevealProps) {
     <motion.div
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, amount: 0.25 }}
+      viewport={{ once: true, amount: 0.2 }}
       custom={delay}
       variants={revealVariants}
       className={className}
@@ -260,29 +119,16 @@ function Reveal({ children, className, delay = 0 }: RevealProps) {
   )
 }
 
-function BrandMark({ light = false }: BrandMarkProps) {
+function BrandMark() {
   return (
-    <div
-      className={cn(
-        'flex h-12 w-12 items-center justify-center rounded-2xl border backdrop-blur-sm',
-        light
-          ? 'border-white/[0.15] bg-white/10 text-brand-ivory'
-          : 'border-brand-ink/10 bg-white text-brand-ink',
-      )}
-    >
-      <svg viewBox="0 0 64 64" className="h-7 w-7 fill-none stroke-current">
+    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#eef3ff] text-[#4b6bff]">
+      <svg viewBox="0 0 64 64" className="h-5 w-5 fill-none stroke-current">
         <path
           d="M16 28L32 16l16 12v18H16V28Z"
-          strokeWidth="1.6"
+          strokeWidth="1.8"
           strokeLinejoin="round"
         />
-        <path d="M24 28v18M40 28v18" strokeWidth="1.6" strokeLinecap="round" />
-        <path
-          d="M23 23h18M21 47h22"
-          strokeWidth="1.6"
-          strokeLinecap="round"
-          opacity="0.6"
-        />
+        <path d="M24 28v18M40 28v18" strokeWidth="1.8" strokeLinecap="round" />
       </svg>
     </div>
   )
@@ -290,113 +136,67 @@ function BrandMark({ light = false }: BrandMarkProps) {
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  })
-
   const { scrollYProgress } = useScroll()
-  const heroY = useTransform(scrollYProgress, [0, 0.22], [0, 140])
-  const heroScale = useTransform(scrollYProgress, [0, 0.22], [1, 1.14])
-  const heroGlow = useTransform(scrollYProgress, [0, 0.22], [0.85, 1.1])
-
-  function handleChange(
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) {
-    const { name, value } = event.target
-    setFormData((current) => ({
-      ...current,
-      [name]: value,
-    }))
-  }
-
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-
-    const params = new URLSearchParams({
-      subject: `Consulta web Hongares - ${formData.name || 'Nuevo contacto'}`,
-      body: `Nombre: ${formData.name}\nEmail: ${formData.email}\n\nMensaje:\n${formData.message}`,
-    })
-
-    window.location.href = `mailto:francisco@hongares.com?${params
-      .toString()
-      .replace(/\+/g, '%20')}`
-  }
+  const heroImageY = useTransform(scrollYProgress, [0, 0.18], [0, 38])
+  const heroImageScale = useTransform(scrollYProgress, [0, 0.18], [1, 1.03])
 
   return (
-    <div className="relative min-h-screen overflow-x-clip bg-brand-ivory text-brand-ink">
-      <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-        <div className="grain absolute inset-0 opacity-40" />
-        <div className="absolute left-[-12rem] top-[12rem] h-[28rem] w-[28rem] rounded-full bg-brand-gold/20 blur-3xl" />
-        <div className="absolute bottom-[-10rem] right-[-8rem] h-[24rem] w-[24rem] rounded-full bg-brand-clay/[0.15] blur-3xl" />
-      </div>
+    <div className="min-h-screen overflow-x-clip bg-white text-[#101114]">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-black/[0.05] bg-white/88 backdrop-blur-xl">
+        <div className="page-shell flex h-[74px] items-center justify-between gap-6">
+          <a
+            href="#inicio"
+            className="flex items-center gap-3"
+            onClick={() => setMenuOpen(false)}
+          >
+            <BrandMark />
+            <span className="text-[1.05rem] font-semibold tracking-[-0.04em]">
+              Hongares
+            </span>
+          </a>
 
-      <header className="fixed inset-x-0 top-0 z-50">
-        <div className="flex items-center justify-between border-b border-white/[0.08] bg-brand-ink/[0.82] px-4 py-3 text-brand-ivory shadow-panel backdrop-blur-xl sm:px-6 lg:px-8">
-            <a
-              href="#inicio"
-              className="group flex items-center gap-3"
-              onClick={() => setMenuOpen(false)}
-            >
-              <BrandMark light />
-              <div className="hidden sm:block">
-                <p className="font-display text-2xl leading-none tracking-[0.12em]">
-                  Hongares
-                </p>
-                <p className="text-xs uppercase tracking-[0.3em] text-brand-ivory/[0.55]">
-                  Valencia
-                </p>
-              </div>
-            </a>
-
-            <nav className="hidden items-center gap-6 lg:flex">
-              {navigation.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className="text-sm tracking-[0.14em] text-brand-ivory/[0.68] transition duration-500 hover:text-white"
-                >
-                  {item.label}
-                </a>
-              ))}
-            </nav>
-
-            <div className="hidden lg:block">
-              <a
-                href="#contacto"
-                className="inline-flex items-center gap-2 rounded-full bg-brand-gold px-4 py-2 text-sm font-semibold text-brand-ink transition duration-500 hover:-translate-y-0.5 hover:bg-brand-ivory"
-              >
-                Hablar con Hongares
-                <ArrowRight className="h-4 w-4" />
+          <nav className="hidden items-center gap-8 lg:flex">
+            {navigation.map((item) => (
+              <a key={item.label} href={item.href} className="nav-link">
+                {item.label}
               </a>
-            </div>
+            ))}
+          </nav>
 
-            <button
-              type="button"
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/[0.12] bg-white/5 text-brand-ivory transition duration-300 hover:bg-white/10 lg:hidden"
-              aria-label={menuOpen ? 'Cerrar menu' : 'Abrir menu'}
-              onClick={() => setMenuOpen((current) => !current)}
-            >
-              {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </button>
+          <div className="hidden items-center gap-5 lg:flex">
+            <a href={mailHref} className="nav-link">
+              Email
+            </a>
+            <a href="#contacto" className="button-primary">
+              Hablar ahora
+            </a>
           </div>
+
+          <button
+            type="button"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-black/[0.08] text-[#101114] lg:hidden"
+            aria-label={menuOpen ? 'Cerrar menu' : 'Abrir menu'}
+            onClick={() => setMenuOpen((current) => !current)}
+          >
+            {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
 
         <AnimatePresence>
           {menuOpen ? (
             <motion.div
-              initial={{ opacity: 0, y: -12 }}
+              initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className="border-b border-white/[0.08] bg-brand-ink/[0.94] px-4 py-4 text-brand-ivory shadow-panel backdrop-blur-xl sm:px-6 lg:hidden"
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="border-t border-black/[0.05] bg-white px-6 py-5 lg:hidden"
             >
               <div className="grid gap-2">
                 {navigation.map((item) => (
                   <a
                     key={item.label}
                     href={item.href}
-                    className="border border-white/[0.08] px-4 py-3 text-sm tracking-[0.14em] text-brand-ivory/75 transition duration-300 hover:border-white/20 hover:bg-white/5 hover:text-white"
+                    className="rounded-2xl border border-black/[0.06] px-4 py-3 text-sm font-medium text-black/72"
                     onClick={() => setMenuOpen(false)}
                   >
                     {item.label}
@@ -404,11 +204,10 @@ function App() {
                 ))}
                 <a
                   href="#contacto"
-                  className="mt-2 inline-flex items-center justify-center gap-2 bg-brand-gold px-4 py-3 text-sm font-semibold text-brand-ink"
+                  className="button-primary mt-2 justify-center"
                   onClick={() => setMenuOpen(false)}
                 >
-                  Contactar
-                  <ArrowUpRight className="h-4 w-4" />
+                  Hablar ahora
                 </a>
               </div>
             </motion.div>
@@ -416,721 +215,279 @@ function App() {
         </AnimatePresence>
       </header>
 
-      <main className="relative z-10">
-        <section
-          id="inicio"
-          className="relative isolate min-h-[100svh] overflow-hidden bg-[linear-gradient(180deg,#d8d0c5_0%,#cfc6bb_100%)]"
-        >
-          <motion.div
-            style={{ y: heroY, scale: heroScale }}
-            className="absolute left-[-10rem] top-12 h-[34rem] w-[34rem] rounded-full bg-brand-paper/70 blur-[120px]"
-          />
-          <motion.div
-            style={{ opacity: heroGlow }}
-            className="absolute inset-x-0 top-0 h-[52rem] bg-[radial-gradient(circle_at_18%_18%,rgba(227,190,100,0.28),transparent_24%),radial-gradient(circle_at_85%_14%,rgba(11,18,20,0.18),transparent_20%),radial-gradient(circle_at_62%_72%,rgba(170,104,63,0.16),transparent_28%)]"
-          />
+      <main className="pt-[74px]">
+        <section id="inicio" className="page-shell relative py-10 sm:py-14 lg:py-16">
+          <div className="pointer-events-none absolute left-[-6rem] top-10 h-52 w-52 rounded-full bg-[#eef3ff] blur-3xl" />
 
-          <div className="relative">
-            <div className="hero-surface relative min-h-[100svh] overflow-hidden rounded-none border-x-0 border-t-0 px-4 pb-8 pt-28 sm:px-6 lg:px-8 lg:pt-32">
-              <div className="absolute right-0 top-0 h-28 w-36 rounded-bl-[3rem] bg-brand-ink sm:h-36 sm:w-48" />
-              <div className="absolute left-0 top-16 h-[26rem] w-[26rem] rounded-full bg-white/[0.58] blur-[90px]" />
-
-              <div className="relative mx-auto flex min-h-[calc(100svh-7rem)] max-w-7xl flex-col">
-                <div className="flex flex-1 items-center py-4 lg:py-8">
-                  <Reveal className="max-w-4xl">
-                    <div className="mb-6 flex flex-wrap gap-2">
-                      {heroNotes.map((note) => (
-                        <a
-                          key={note.id}
-                          href={`#${note.id}`}
-                          className="rounded-full border border-brand-ink/[0.1] bg-white/45 px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-brand-ink/[0.66] backdrop-blur-sm transition duration-300 hover:border-brand-ink/[0.18] hover:bg-white/70 hover:text-brand-ink"
-                        >
-                          {note.tag}
-                        </a>
-                      ))}
-                    </div>
-
-                    <h1 className="text-balance font-display text-[clamp(4rem,8vw,6.6rem)] leading-[0.9] tracking-[-0.045em] text-brand-ink">
-                      Alquilar con rigor. <br />
-                      Habitar con dignidad.
-                    </h1>
-                    <p className="mt-7 max-w-2xl text-lg leading-8 text-brand-ink/[0.7] sm:text-xl">
-                      Hongares conecta propietarios, familias migrantes y
-                      organizaciones con una gestion sobria, humana y
-                      profundamente actual para el mercado de Valencia.
-                    </p>
-
-                    <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-                      <a href="#servicios" className="button-primary">
-                        Explorar servicios
-                        <ArrowRight className="h-4 w-4" />
-                      </a>
-                      <a
-                        href="#audiencias"
-                        className="inline-flex items-center justify-center rounded-full border border-brand-ink/[0.12] px-6 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-brand-ink/[0.7] transition duration-500 hover:-translate-y-0.5 hover:border-brand-ink/[0.22] hover:bg-white/[0.55] hover:text-brand-ink"
-                      >
-                        Descubrir la propuesta
-                      </a>
-                    </div>
-
-                    <p className="mt-10 max-w-xl text-[0.76rem] font-semibold uppercase tracking-[0.32em] text-brand-clay">
-                      Tres audiencias, una misma metodologia.
-                    </p>
-                  </Reveal>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="posicionamiento" className="relative bg-brand-ivory pb-24 sm:pb-28">
-          <div className="section-shell">
-            <Reveal className="brand-storyboard">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_18%,rgba(227,190,100,0.18),transparent_18%),radial-gradient(circle_at_82%_24%,rgba(255,255,255,0.08),transparent_18%),linear-gradient(135deg,#101719_0%,#182228_48%,#223038_100%)]" />
-              <div className="absolute -left-20 bottom-[-5rem] h-64 w-64 rounded-full border border-white/[0.08]" />
-              <div className="absolute left-[46%] top-[30%] hidden h-36 w-36 rounded-full border border-white/[0.08] lg:block" />
-
-              <div className="relative">
-                <div className="flex flex-wrap gap-2">
-                  {aboutTags.map((tag) => (
-                    <span key={tag} className="story-pill">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="mt-8 grid gap-5 lg:grid-cols-[1.45fr_0.8fr] lg:items-start">
-                  <div className="story-panel story-panel-main">
-                    <p className="story-label text-brand-ivory/[0.5]">
-                      Sobre Hongares
-                    </p>
-                    <h2 className="mt-6 max-w-3xl font-display text-[clamp(3rem,5vw,5.2rem)] leading-[0.94] tracking-[-0.05em] text-brand-ivory">
-                      {brandPositioning.statement}
-                    </h2>
-                  </div>
-
-                  <div className="grid gap-5">
-                    <div className="story-panel story-panel-light">
-                      <p className="story-label text-brand-ink/[0.42]">
-                        Que hace
-                      </p>
-                      <p className="mt-4 max-w-sm text-base leading-8 text-brand-ink/[0.72]">
-                        {brandPositioning.tone}
-                      </p>
-                    </div>
-
-                    <div className="story-panel story-panel-gold">
-                      <p className="story-label text-brand-ink/[0.55]">
-                        Diferencial
-                      </p>
-                      <p className="mt-4 max-w-sm font-display text-[clamp(2.2rem,4vw,3.2rem)] leading-[0.94] text-brand-ink">
-                        {brandPositioning.differentialTitle}
-                      </p>
-                      <p className="mt-3 max-w-xs text-base leading-7 text-brand-ink/[0.76]">
-                        {brandPositioning.differentialText}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-          </div>
-        </section>
-
-        <section id="audiencias" className="relative bg-[linear-gradient(180deg,#f5efe2_0%,#efe7d7_100%)] py-24 sm:py-28">
-          <div className="section-shell">
-            <Reveal className="max-w-3xl">
-              <span className="eyebrow border-brand-ink/[0.08] bg-white/75 text-brand-clay">
-                Para quien es
-              </span>
-              <h2 className="mt-6 text-balance font-display text-[clamp(3.2rem,6vw,5.4rem)] leading-[0.94] tracking-[-0.05em] text-brand-ink">
-                Tres perfiles encuentran aqui algo que el mercado tradicional rara vez ofrece: claridad.
-              </h2>
-              <p className="mt-6 max-w-2xl text-base leading-7 text-brand-ink/[0.68]">
-                Hongares trabaja donde suele haber mas friccion: entre propietarios, familias migrantes y entidades que necesitan vivienda con contexto.
-              </p>
-            </Reveal>
-
-            <div className="mt-12 space-y-5">
-              {heroNotes.map((note, index) => {
-                const Icon = note.icon
-
-                return (
-                  <Reveal key={note.id} delay={0.08 * index}>
-                    <section
-                      id={note.id}
-                      className={cn(
-                        'audience-spotlight',
-                        index !== 1
-                          ? 'audience-spotlight-dark text-brand-ivory'
-                          : 'audience-spotlight-light text-brand-ink',
-                      )}
-                    >
-                      <div className="grid gap-8 lg:grid-cols-[0.6fr_1.4fr] lg:items-center">
-                        <div>
-                          <div
-                            className={cn(
-                              'flex h-14 w-14 items-center justify-center rounded-2xl border',
-                              index !== 1
-                                ? 'border-white/10 bg-white/[0.06] text-brand-gold'
-                                : 'border-brand-ink/[0.08] bg-brand-paper text-brand-clay',
-                            )}
-                          >
-                            <Icon className="h-6 w-6" />
-                          </div>
-                          <p
-                            className={cn(
-                              'mt-6 text-xs uppercase tracking-[0.28em]',
-                              index !== 1 ? 'text-brand-ivory/[0.44]' : 'text-brand-ink/[0.4]',
-                            )}
-                          >
-                            {index === 0
-                              ? 'Para propietarios'
-                              : index === 1
-                                ? 'Para familias migrantes'
-                                : 'Para ONGs y programas'}
-                          </p>
-                          <h3 className="mt-3 font-display text-[clamp(2.6rem,4vw,4rem)] leading-[0.92] tracking-[-0.04em]">
-                            {note.title}
-                          </h3>
-                        </div>
-
-                        <div className="grid gap-4 lg:max-w-3xl lg:grid-cols-[1.2fr_0.8fr]">
-                          <p
-                            className={cn(
-                              'text-lg leading-8',
-                              index !== 1 ? 'text-brand-ivory/[0.74]' : 'text-brand-ink/[0.72]',
-                            )}
-                          >
-                            {note.text}
-                          </p>
-                          <div
-                            className={cn(
-                              'rounded-[1.8rem] p-5',
-                              index !== 1
-                                ? 'border border-white/[0.08] bg-white/[0.04]'
-                                : 'border border-brand-ink/[0.08] bg-white/75',
-                            )}
-                          >
-                            <p
-                              className={cn(
-                                'text-[0.68rem] font-semibold uppercase tracking-[0.28em]',
-                                index !== 1 ? 'text-brand-ivory/[0.42]' : 'text-brand-ink/[0.38]',
-                              )}
-                            >
-                              Enfoque
-                            </p>
-                            <p
-                              className={cn(
-                                'mt-3 text-sm leading-6',
-                                index !== 1 ? 'text-brand-ivory/[0.7]' : 'text-brand-ink/[0.66]',
-                              )}
-                            >
-                              {index === 0
-                                ? 'Filtrado, mediacion y acompanamiento para que alquilar se sienta mas seguro.'
-                                : index === 1
-                                  ? 'Traduccion de requisitos y apoyo practico para abrir acceso real a vivienda.'
-                                  : 'Coordinacion operativa con sensibilidad, tiempos claros y seguimiento sostenido.'}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </section>
-                  </Reveal>
-                )
-              })}
-            </div>
-          </div>
-        </section>
-
-        <section id="servicios" className="bg-brand-ink py-24 text-brand-ivory sm:py-28">
-          <div className="section-shell grid gap-12 xl:grid-cols-[0.78fr_1.22fr]">
-            <Reveal className="xl:sticky xl:top-28 xl:h-fit">
-              <span className="eyebrow">Servicios</span>
-              <h2 className="mt-6 max-w-xl text-balance font-display text-[clamp(3rem,6vw,5rem)] leading-[0.92] tracking-[-0.04em] text-brand-ivory">
-                Una oferta clara para necesidades distintas dentro del mismo ecosistema de alquiler.
-              </h2>
-              <p className="mt-7 max-w-md text-base leading-7 text-brand-ivory/[0.68]">
-                La propuesta se ordena en tres frentes para que cada tipo de cliente entienda rapido que recibe, como se trabaja y donde esta el valor.
-              </p>
-              <div className="mt-8 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm uppercase tracking-[0.24em] text-brand-ivory/[0.62]">
-                Propietarios / Familias / ONGs
-              </div>
-            </Reveal>
-
-            <div className="space-y-5">
-              {serviceCards.map((card, index) => {
-                const Icon = card.icon
-
-                return (
-                  <Reveal
-                    key={card.title}
-                    delay={0.08 * index}
-                    className={cn(
-                      'service-card group',
-                      index === 1 ? 'xl:translate-x-10' : '',
-                      index === 2 ? 'xl:-translate-x-4' : '',
-                    )}
-                  >
-                    <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
-                      <div className="max-w-2xl">
-                        <div className="flex items-center gap-4">
-                          <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.06]">
-                            <Icon className="h-6 w-6 text-brand-gold" />
-                          </div>
-                          <div>
-                            <p className="text-xs uppercase tracking-[0.28em] text-brand-ivory/40">
-                              {card.number}
-                            </p>
-                            <h3 className="mt-2 font-display text-4xl leading-none text-brand-ivory">
-                              {card.title}
-                            </h3>
-                          </div>
-                        </div>
-
-                        <p className="mt-6 max-w-2xl text-base leading-7 text-brand-ivory/70">
-                          {card.description}
-                        </p>
-                      </div>
-
-                      <a
-                        href="#contacto"
-                        className="inline-flex items-center gap-2 self-start rounded-full border border-white/[0.12] px-4 py-2 text-sm uppercase tracking-[0.18em] text-brand-ivory/[0.72] transition duration-500 group-hover:border-brand-gold/40 group-hover:text-brand-gold"
-                      >
-                        Hablar del caso
-                        <ArrowUpRight className="h-4 w-4" />
-                      </a>
-                    </div>
-
-                    <div className="mt-8 grid gap-3 sm:grid-cols-3">
-                      {card.features.map((feature) => (
-                        <div
-                          key={feature}
-                          className="rounded-[1.5rem] border border-white/[0.08] bg-white/[0.03] px-4 py-4 text-sm leading-6 text-brand-ivory/[0.68] transition duration-500 group-hover:border-white/[0.16] group-hover:bg-white/[0.05]"
-                        >
-                          {feature}
-                        </div>
-                      ))}
-                    </div>
-                  </Reveal>
-                )
-              })}
-            </div>
-          </div>
-        </section>
-
-        <section id="metodo" className="relative py-24 sm:py-28">
-          <div className="section-shell grid gap-12 xl:grid-cols-[0.92fr_1.08fr] xl:items-start">
-            <Reveal className="overflow-hidden rounded-[2.5rem] border border-brand-ink/[0.08] bg-brand-paper p-8 shadow-elevated sm:p-10">
-              <span className="eyebrow text-brand-clay">Como funciona</span>
-              <h2 className="mt-6 text-balance font-display text-[clamp(3rem,5.5vw,4.8rem)] leading-[0.92] tracking-[-0.04em]">
-                Un proceso simple para decisiones que suelen ser complejas.
-              </h2>
-              <p className="mt-6 max-w-lg text-base leading-7 text-brand-ink/[0.68]">
-                Hongares organiza el alquiler en pasos claros para que cada caso avance con criterio, menos friccion y una mediacion mas estable.
+          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+            <Reveal className="max-w-[34rem] pt-6">
+              <h1 className="text-[clamp(3.3rem,7.8vw,5.8rem)] font-semibold leading-[0.9] tracking-[-0.075em] text-[#111217]">
+                Alquila con <span className="text-[#4b6bff]">confianza</span>{' '}
+                y contexto real
+              </h1>
+              <p className="mt-6 max-w-[30rem] text-[1rem] leading-7 text-black/58 sm:text-[1.04rem]">
+                Hongares acompana alquileres en Valencia para propietarios,
+                familias migrantes y organizaciones que necesitan criterio,
+                mediacion y presencia local.
               </p>
 
-              <div className="mt-10 grid gap-4 sm:grid-cols-2">
-                <div className="rounded-[1.8rem] border border-brand-ink/[0.08] bg-white/70 p-5">
-                  <ShieldCheck className="h-6 w-6 text-brand-clay" />
-                  <p className="mt-4 text-xs uppercase tracking-[0.28em] text-brand-ink/40">
-                    Criterio
-                  </p>
-                  <p className="mt-3 text-sm leading-6 text-brand-ink/[0.68]">
-                    Cada operacion se lee desde el contexto, no desde respuestas estandar ni soluciones en serie.
-                  </p>
-                </div>
-                <div className="rounded-[1.8rem] border border-brand-ink/[0.08] bg-brand-ink p-5 text-brand-ivory">
-                  <Sparkles className="h-6 w-6 text-brand-gold" />
-                  <p className="mt-4 text-xs uppercase tracking-[0.28em] text-brand-ivory/40">
-                    Acompanamiento
-                  </p>
-                  <p className="mt-3 text-sm leading-6 text-brand-ivory/[0.68]">
-                    El valor esta en sostener la conversacion, ordenar expectativas y seguir presentes despues de la firma.
-                  </p>
+              <div className="mt-8 flex flex-wrap items-center gap-5">
+                <a href="#discover" className="button-primary">
+                  Ver la propuesta
+                </a>
+                <div className="inline-flex items-center gap-2 text-sm font-semibold text-black">
+                  <Star className="h-4 w-4 fill-[#4b6bff] text-[#4b6bff]" />
+                  <span>4.9</span>
                 </div>
               </div>
             </Reveal>
 
-            <div className="space-y-4">
-              {processSteps.map((step, index) => (
-                <Reveal
-                  key={step.title}
-                  delay={0.08 * index}
-                  className={cn(
-                    'group rounded-[2rem] border border-brand-ink/[0.08] bg-white/[0.72] p-6 shadow-soft backdrop-blur-sm transition duration-500 hover:-translate-y-1 hover:border-brand-ink/[0.14] hover:shadow-elevated sm:p-8',
-                    index % 2 === 1 ? 'md:ml-12' : '',
-                  )}
-                >
-                  <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-                    <div>
-                      <p className="text-xs uppercase tracking-[0.28em] text-brand-clay">
-                        Paso {step.number}
-                      </p>
-                      <h3 className="mt-3 font-display text-4xl leading-none">
-                        {step.title}
-                      </h3>
-                    </div>
-                    <div className="h-px w-full bg-brand-ink/10 md:mt-8 md:max-w-[8rem]" />
-                  </div>
-                  <p className="mt-6 max-w-2xl text-base leading-7 text-brand-ink/[0.68]">
-                    {step.text}
-                  </p>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section
-          id="manifiesto"
-          className="relative overflow-hidden bg-[linear-gradient(180deg,#f1f3f6_0%,#edf0f4_100%)] py-24 sm:py-28"
-        >
-          <div className="absolute inset-x-0 top-0 h-72 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.8),transparent_55%)]" />
-
-          <div className="section-shell relative">
-            <Reveal className="mx-auto max-w-5xl text-center">
-              <span className="eyebrow border-brand-ink/[0.08] bg-white/75 text-brand-clay">
-                Impacto
-              </span>
-              <h2 className="mt-6 text-balance font-display text-[clamp(3.4rem,7vw,6rem)] leading-[0.94] tracking-[-0.05em] text-brand-ink">
-                Cuando el proceso se ordena bien, gana la operacion y tambien la confianza entre las partes.
-              </h2>
-            </Reveal>
-
-            <div className="mx-auto mt-12 grid max-w-6xl gap-4 lg:grid-cols-[1fr_1.45fr_0.9fr]">
-              {audienceCards.map((card, index) => {
-                const Icon =
-                  index === 0 ? House : index === 1 ? Users2 : Building2
-
-                return (
-                  <Reveal
-                    key={card.title}
-                    delay={0.08 * index}
-                    className="manifesto-mini-card"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-paper shadow-soft">
-                        <Icon className="h-5 w-5 text-brand-clay" />
-                      </div>
-                      <div>
-                        <p className="text-xl font-semibold leading-tight text-brand-ink">
-                          {card.title}
-                        </p>
-                        <p className="mt-3 text-sm leading-6 text-brand-ink/[0.62]">
-                          {card.text}
-                        </p>
-                      </div>
-                    </div>
-                  </Reveal>
-                )
-              })}
-            </div>
-
-            <div className="mt-20 grid gap-12 xl:grid-cols-[1.05fr_0.95fr] xl:items-center">
-              <Reveal className="manifesto-stage">
-                <div className="absolute inset-5 rounded-[2.2rem] bg-[linear-gradient(135deg,rgba(234,220,245,0.92),rgba(214,231,242,0.92),rgba(217,242,229,0.9))]" />
-                <div className="absolute left-8 top-1/2 flex h-14 w-14 -translate-y-1/2 items-center justify-center rounded-[1.6rem] bg-white/80 shadow-soft backdrop-blur-sm">
-                  <Sparkles className="h-5 w-5 text-brand-clay" />
-                </div>
-                <div className="absolute bottom-14 left-10 rounded-[1.4rem] bg-white/82 px-5 py-4 shadow-soft backdrop-blur-sm">
-                  <p className="text-[0.68rem] uppercase tracking-[0.28em] text-brand-ink/[0.38]">
-                    Resultado
-                  </p>
-                  <p className="mt-2 text-xl font-semibold text-brand-ink">
-                    Una relacion mas sostenible
-                  </p>
-                </div>
-                <div className="absolute right-10 top-14 rounded-[1.4rem] bg-white/82 px-5 py-4 shadow-soft backdrop-blur-sm">
-                  <p className="text-[0.68rem] uppercase tracking-[0.28em] text-brand-ink/[0.38]">
-                    Prueba
-                  </p>
-                  <p className="mt-2 text-xl font-semibold text-brand-ink">
-                    Confianza operativa
-                  </p>
-                </div>
-
-                <div className="relative mx-auto max-w-[28rem] rounded-[2.4rem] border border-white/60 bg-white/85 p-5 shadow-elevated backdrop-blur-sm sm:p-6">
-                  <div className="flex items-center justify-between border-b border-brand-ink/[0.08] pb-4">
-                    <div>
-                      <p className="text-[0.68rem] uppercase tracking-[0.28em] text-brand-ink/[0.4]">
-                        Hongares en la practica
-                      </p>
-                      <p className="mt-2 text-xl font-semibold text-brand-ink">
-                        Una agencia que ordena, traduce y acompana cada punto de contacto.
-                      </p>
-                    </div>
-                    <Handshake className="h-6 w-6 text-brand-clay" />
-                  </div>
-
-                  <div className="mt-5 grid gap-4 sm:grid-cols-[0.7fr_1.3fr]">
-                    <div className="rounded-[1.5rem] bg-brand-paper p-4">
-                      <p className="text-[0.68rem] uppercase tracking-[0.28em] text-brand-ink/[0.35]">
-                        Lo que cambia
-                      </p>
-                      <div className="mt-4 space-y-2">
-                        <div className="h-2 rounded-full bg-brand-gold/70" />
-                        <div className="h-2 w-4/5 rounded-full bg-brand-ink/[0.15]" />
-                        <div className="h-2 w-3/5 rounded-full bg-brand-ink/[0.1]" />
-                      </div>
-                    </div>
-
-                    <div className="grid gap-3">
-                      <div className="rounded-[1.4rem] border border-brand-ink/[0.08] bg-white p-4">
-                        <p className="text-[0.68rem] uppercase tracking-[0.28em] text-brand-ink/[0.35]">
-                          Valor visible
-                        </p>
-                        <p className="mt-3 text-sm leading-6 text-brand-ink/[0.72]">
-                          Propietarios, familias y entidades entienden mejor el proceso y toman decisiones con menos desgaste y mas contexto.
-                        </p>
-                      </div>
-                      <div className="grid gap-3 sm:grid-cols-2">
-                        <div className="rounded-[1.2rem] bg-brand-paper p-4">
-                          <p className="text-[0.68rem] uppercase tracking-[0.28em] text-brand-ink/[0.35]">
-                            Filtro con criterio
-                          </p>
-                        </div>
-                        <div className="rounded-[1.2rem] bg-brand-paper p-4">
-                          <p className="text-[0.68rem] uppercase tracking-[0.28em] text-brand-ink/[0.35]">
-                            Seguimiento humano
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Reveal>
-
-              <Reveal delay={0.1} className="max-w-2xl">
-                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.32em] text-brand-clay">
-                  Lo que demuestra el servicio
-                </p>
-                <h3 className="mt-5 text-balance font-display text-[clamp(3rem,5vw,4.6rem)] leading-[0.94] tracking-[-0.05em] text-brand-ink">
-                  El valor se nota cuando el alquiler deja de depender del azar y gana estructura.
-                </h3>
-
-                <div className="mt-8 space-y-5">
-                  {manifestoFlow.map((item, index) => (
-                    <motion.div
-                      key={item.title}
-                      initial={{ opacity: 0, x: 24 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true, amount: 0.35 }}
-                      transition={{
-                        duration: 0.7,
-                        delay: 0.08 * index,
-                        ease: [0.22, 1, 0.36, 1],
-                      }}
-                      className="flex gap-4"
-                    >
-                      <div className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-gold/30 text-sm font-semibold text-brand-ink">
-                        {item.number}
-                      </div>
-                      <div className="border-b border-brand-ink/[0.08] pb-5 last:border-b-0 last:pb-0">
-                        <p className="text-2xl font-semibold leading-tight text-brand-ink">
-                          {item.title}
-                        </p>
-                        <p className="mt-2 max-w-xl text-base leading-7 text-brand-ink/[0.66]">
-                          {item.text}
-                        </p>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </Reveal>
-            </div>
-          </div>
-        </section>
-
-        <section
-          id="impacto"
-          className="relative overflow-hidden bg-[linear-gradient(180deg,#e7d1a2_0%,#e5c679_56%,#d6b466_100%)] py-24 sm:py-28"
-        >
-          <div className="section-shell relative">
-            <Reveal className="max-w-3xl">
-              <span className="eyebrow text-brand-ink/[0.65]">FAQ</span>
-              <h2 className="mt-6 text-balance font-display text-[clamp(3rem,6vw,5.1rem)] leading-[0.92] tracking-[-0.04em]">
-                Preguntas habituales antes de iniciar un caso.
-              </h2>
-              <p className="mt-6 max-w-2xl text-base leading-7 text-brand-ink/70">
-                Estas son algunas de las dudas mas comunes cuando una persona, un propietario o una entidad evalua si Hongares puede ayudar.
-              </p>
-            </Reveal>
-
-            <div className="mt-12 grid gap-5 lg:grid-cols-12">
-              {faqItems.map((item, index) => (
-                <Reveal
-                  key={item.title}
-                  delay={0.1 * index}
-                  className={cn(
-                    'relative overflow-hidden rounded-[2.3rem] border border-brand-ink/[0.08] bg-brand-paper p-7 shadow-elevated',
-                    index === 0 ? 'lg:col-span-4' : '',
-                    index === 1 ? 'lg:col-span-5 lg:translate-y-8' : '',
-                    index === 2 ? 'lg:col-span-3' : '',
-                  )}
-                >
-                  <div
-                    className={cn(
-                      'absolute inset-0 bg-gradient-to-br opacity-100',
-                      item.accent,
-                    )}
+            <Reveal delay={0.08}>
+              <motion.div
+                style={{ y: heroImageY, scale: heroImageScale }}
+                className="relative mx-auto w-full max-w-[560px]"
+              >
+                <div className="hero-photo overflow-hidden rounded-[28px] border border-black/[0.06] bg-[#f3f4f6] shadow-[0_28px_60px_rgba(16,17,20,0.08)]">
+                  <img
+                    src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1400&q=80"
+                    alt="Mesa clara con plantas y cuaderno"
+                    className="h-full w-full object-cover"
                   />
-                  <div className="relative">
-                    <p className="text-xs uppercase tracking-[0.28em] text-brand-ink/[0.42]">
-                      Pregunta frecuente
-                    </p>
-                    <h3 className="mt-4 font-display text-4xl leading-none">
-                      {item.title}
-                    </h3>
-                    <p className="mt-5 text-base leading-7 text-brand-ink/[0.72]">
-                      {item.text}
-                    </p>
+                </div>
+
+                <div className="absolute bottom-5 left-5 inline-flex items-center gap-3 rounded-full bg-white px-3 py-2 shadow-[0_16px_34px_rgba(16,17,20,0.12)]">
+                  <div className="flex -space-x-3">
+                    {teamCards.map((item) => (
+                      <img
+                        key={item.title}
+                        src={item.image}
+                        alt={item.title}
+                        className="h-9 w-9 rounded-full border-2 border-white object-cover"
+                      />
+                    ))}
                   </div>
-                </Reveal>
+                  <span className="text-sm font-semibold tracking-[-0.03em] text-[#101114]">
+                    120+ casos
+                  </span>
+                </div>
+              </motion.div>
+            </Reveal>
+          </div>
+
+          <Reveal delay={0.12} className="mt-14 sm:mt-16">
+            <div className="logo-cloud">
+              {partnerLogos.map((item, index) => (
+                <span
+                  key={item}
+                  className={cn(
+                    'logo-cloud-item',
+                    index % 3 === 0 ? 'text-[1.95rem]' : '',
+                    index % 3 === 1 ? 'text-[1.25rem]' : '',
+                    index % 3 === 2 ? 'text-[1.05rem]' : '',
+                  )}
+                >
+                  {item}
+                </span>
               ))}
             </div>
+          </Reveal>
+        </section>
+
+        <section id="resumen" className="page-shell py-16 sm:py-20 lg:py-24">
+          <div className="grid gap-10 lg:grid-cols-[0.96fr_0.74fr] lg:items-start">
+            <Reveal className="max-w-[32rem]">
+              <h2 className="text-[clamp(2.8rem,6vw,4.7rem)] font-semibold leading-[0.92] tracking-[-0.075em] text-[#111217]">
+                Una agencia para <span className="text-black/28">casos</span>{' '}
+                donde el contexto cambia la decision
+              </h2>
+            </Reveal>
+
+            <Reveal delay={0.08}>
+              <div className="grid grid-cols-2 gap-x-10 gap-y-10 sm:gap-x-14">
+                {aboutStats.map((item) => (
+                  <div key={item.label}>
+                    <p className="text-[clamp(2.4rem,4.5vw,3.8rem)] font-semibold leading-none tracking-[-0.06em] text-[#111217]">
+                      {item.value}
+                    </p>
+                    <p className="mt-2 text-[0.72rem] uppercase tracking-[0.18em] text-black/46">
+                      {item.label}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+
+          <Reveal delay={0.14}>
+            <p className="mx-auto mt-12 max-w-[54rem] text-center text-[1.18rem] leading-9 tracking-[-0.02em] text-black/62">
+              Hongares ordena alquileres en Valencia cuando la vivienda no se
+              entiende solo desde el mercado: traduce requisitos, media entre
+              partes y sostiene confianza durante todo el proceso.
+            </p>
+          </Reveal>
+        </section>
+
+        <section id="discover" className="page-shell py-4 sm:py-6 lg:py-8">
+          <Reveal className="mx-auto max-w-[34rem] text-center">
+            <h2 className="text-[clamp(2.5rem,5.2vw,4.2rem)] font-semibold leading-[0.94] tracking-[-0.07em] text-[#111217]">
+              Descubre <span className="text-black/28">Hongares</span>
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-black/54">
+              Una lectura mas clara de la vivienda, la migracion y la
+              mediacion en la misma operacion.
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.08} className="mt-8">
+            <div className="media-frame">
+              <img
+                src={section1Image}
+                alt="Equipe Hongares em reuniao"
+                className="h-full w-full object-cover object-[center_38%]"
+              />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.1),rgba(0,0,0,0.34))]" />
+              <div className="absolute left-6 top-4 text-[clamp(4.6rem,11vw,8rem)] font-semibold leading-none tracking-[-0.085em] text-white sm:left-8 sm:top-6">
+                Hongares
+              </div>
+            </div>
+          </Reveal>
+        </section>
+
+        <section id="equipo" className="page-shell py-16 sm:py-20 lg:py-24">
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+            <Reveal className="max-w-[36rem]">
+              <h2 className="text-[clamp(2.6rem,5.4vw,4.1rem)] font-semibold leading-[0.94] tracking-[-0.07em] text-[#111217]">
+                Las caras de <span className="text-black/28">Hongares</span>
+              </h2>
+              <p className="mt-3 max-w-[31rem] text-sm leading-6 text-black/54">
+                Mediacion, coordinacion y presencia local para procesos de
+                alquiler que necesitan mas cuidado y menos ruido.
+              </p>
+            </Reveal>
+
+            <Reveal delay={0.08}>
+              <a href={mailHref} className="button-blue-ghost">
+                Ver mas
+              </a>
+            </Reveal>
+          </div>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {teamCards.map((card, index) => (
+              <Reveal key={card.title} delay={0.08 * index}>
+                <article className="team-card">
+                  <div className="overflow-hidden rounded-[20px] bg-[#f4f5f7]">
+                    <img
+                      src={card.image}
+                      alt={card.title}
+                      className="h-[320px] w-full object-cover"
+                    />
+                  </div>
+                  <div className="mt-4 flex items-start justify-between gap-4">
+                    <div>
+                      <h3 className="text-[1.45rem] font-semibold tracking-[-0.04em] text-[#111217]">
+                        {card.title}
+                      </h3>
+                      <p className="mt-1 text-xs uppercase tracking-[0.12em] text-black/42">
+                        {card.role}
+                      </p>
+                    </div>
+                    <div className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#f1f3f7] text-black/48">
+                      <ArrowUpRight className="h-4 w-4" />
+                    </div>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
           </div>
         </section>
 
-        <section id="contacto" className="bg-brand-ink py-24 text-brand-ivory sm:py-28">
-          <div className="section-shell">
-            <div className="grid gap-8 xl:grid-cols-[0.9fr_1.1fr]">
-              <Reveal className="rounded-[2.5rem] border border-white/10 bg-white/[0.04] p-8 shadow-panel sm:p-10">
-                <span className="eyebrow">Contacto</span>
-                <h2 className="mt-6 max-w-lg text-balance font-display text-[clamp(3rem,6vw,4.9rem)] leading-[0.92] tracking-[-0.04em] text-brand-ivory">
-                  Si hay una vivienda, una familia o un caso por coordinar, aqui empieza la conversacion.
-                </h2>
-                <p className="mt-6 max-w-lg text-base leading-7 text-brand-ivory/[0.68]">
-                  Propietarios, familias y entidades pueden escribir con contexto. Hongares responde desde la mediacion, no desde un formulario generico.
-                </p>
-
-                <div className="mt-10 space-y-4">
-                  {contactItems.map((item) => {
-                    const Icon = item.icon
-
-                    return (
-                      <a
-                        key={item.label}
-                        href={item.href}
-                        target={item.href.startsWith('http') ? '_blank' : undefined}
-                        rel={item.href.startsWith('http') ? 'noreferrer' : undefined}
-                        className="group flex items-start gap-4 rounded-[1.7rem] border border-white/10 bg-white/[0.03] px-5 py-5 transition duration-500 hover:-translate-y-0.5 hover:border-white/[0.18] hover:bg-white/[0.06]"
-                      >
-                        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-brand-gold">
-                          <Icon className="h-5 w-5" />
-                        </div>
-                        <div>
-                          <p className="text-xs uppercase tracking-[0.26em] text-brand-ivory/[0.42]">
-                            {item.label}
-                          </p>
-                          <p className="mt-2 text-base leading-7 text-brand-ivory/[0.78]">
-                            {item.value}
-                          </p>
-                        </div>
-                      </a>
-                    )
-                  })}
-                </div>
-              </Reveal>
-
-              <Reveal delay={0.14} className="contact-panel rounded-[2.5rem] p-8 shadow-panel sm:p-10">
-                  <div className="flex items-center justify-between gap-4">
-                    <div>
-                      <p className="text-xs uppercase tracking-[0.28em] text-brand-ink/[0.42]">
-                        Formulario de contacto
-                      </p>
-                      <h3 className="mt-3 font-display text-4xl leading-none text-brand-ink">
-                      Cuentanos el caso.
-                      </h3>
-                    </div>
-                  <div className="hidden rounded-full border border-brand-ink/10 bg-white/70 px-4 py-2 text-xs uppercase tracking-[0.28em] text-brand-ink/[0.48] sm:block">
-                    Abre tu correo
-                  </div>
-                </div>
-
-                <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
-                  <div className="grid gap-5 md:grid-cols-2">
-                    <label className="grid gap-2">
-                      <span className="text-sm uppercase tracking-[0.2em] text-brand-ink/[0.48]">
-                        Nombre
-                      </span>
-                      <input
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        autoComplete="name"
-                        required
-                        className="input-field"
-                        placeholder="Tu nombre"
-                      />
-                    </label>
-
-                    <label className="grid gap-2">
-                      <span className="text-sm uppercase tracking-[0.2em] text-brand-ink/[0.48]">
-                        Email
-                      </span>
-                      <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        autoComplete="email"
-                        required
-                        className="input-field"
-                        placeholder="tu@email.com"
-                      />
-                    </label>
-                  </div>
-
-                  <label className="grid gap-2">
-                    <span className="text-sm uppercase tracking-[0.2em] text-brand-ink/[0.48]">
-                      Mensaje
-                    </span>
-                    <textarea
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      rows={7}
-                      className="input-field min-h-[14rem] resize-none"
-                      placeholder="Cuentanos si necesitas alquilar, ofrecer una vivienda o coordinar un caso con una entidad."
+        <section className="page-shell pb-20 pt-2 sm:pb-24" id="testimonios">
+          <Reveal className="max-w-[42rem]">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+              <h2 className="max-w-[32rem] text-[clamp(2.6rem,5.5vw,4.15rem)] font-semibold leading-[0.94] tracking-[-0.075em] text-[#111217]">
+                Elegida por <span className="text-black/28">quienes</span>{' '}
+                necesitan claridad
+              </h2>
+              <div className="inline-flex items-center gap-3 rounded-full bg-[#f5f6f8] px-4 py-2 text-sm font-medium text-black/62">
+                <div className="flex -space-x-2">
+                  {teamCards.slice(0, 2).map((item) => (
+                    <img
+                      key={item.title}
+                      src={item.image}
+                      alt={item.title}
+                      className="h-7 w-7 rounded-full border-2 border-white object-cover"
                     />
-                  </label>
-
-                  <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                    <p className="max-w-sm text-sm leading-6 text-brand-ink/[0.55]">
-                      Al enviar, se abrira tu cliente de correo con el mensaje preparado para Hongares.
-                    </p>
-
-                    <button type="submit" className="button-ink">
-                      Enviar consulta
-                      <ArrowUpRight className="h-4 w-4" />
-                    </button>
-                  </div>
-                </form>
-              </Reveal>
+                  ))}
+                </div>
+                Casos coordinados
+              </div>
             </div>
+          </Reveal>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {reviews.map((review, index) => (
+              <Reveal key={review.title} delay={0.08 * index}>
+                <article className="review-card">
+                  <div className="flex items-center gap-1 text-[#f6b31e]">
+                    {Array.from({ length: 5 }).map((_, starIndex) => (
+                      <Star
+                        key={`${review.title}-${starIndex}`}
+                        className="h-4 w-4 fill-current"
+                      />
+                    ))}
+                  </div>
+                  <p className="mt-5 text-[1rem] leading-7 text-black/62">
+                    {review.text}
+                  </p>
+                  <div className="mt-6 border-t border-black/[0.06] pt-4">
+                    <p className="text-sm font-semibold tracking-[-0.03em] text-[#111217]">
+                      {review.title}
+                    </p>
+                    <p className="mt-1 text-xs uppercase tracking-[0.12em] text-black/40">
+                      Hongares Valencia
+                    </p>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
           </div>
         </section>
       </main>
 
-      <footer className="relative z-10 border-t border-brand-ink/[0.08] bg-brand-paper/80">
-        <div className="section-shell flex flex-col gap-6 py-8 text-sm text-brand-ink/[0.58] md:flex-row md:items-center md:justify-between">
+      <footer
+        id="contacto"
+        className="border-t border-black/[0.06] bg-white pb-10 pt-8"
+      >
+        <div className="page-shell flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-3">
             <BrandMark />
-            <p>Hongares / Gestion de alquiler con mirada humana para Valencia.</p>
+            <div>
+              <p className="text-sm font-semibold tracking-[-0.03em] text-[#111217]">
+                Hongares
+              </p>
+              <p className="text-sm text-black/50">
+                Vivienda, migracion y confianza en Valencia.
+              </p>
+            </div>
           </div>
-          <div className="flex flex-wrap gap-4">
-            {navigation.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="transition duration-300 hover:text-brand-ink"
-              >
-                {item.label}
-              </a>
-            ))}
+
+          <div className="flex flex-wrap items-center gap-4 text-sm text-black/60">
+            <a href="tel:+34605592599" className="footer-link">
+              605 592 599
+            </a>
+            <a href={mailHref} className="footer-link">
+              francisco@hongares.com
+            </a>
+            <a
+              href="https://maps.google.com/?q=Calle+Santa+Cruz+de+Tenerife+7,+Valencia"
+              target="_blank"
+              rel="noreferrer"
+              className="footer-link inline-flex items-center gap-2"
+            >
+              Valencia
+              <ArrowRight className="h-4 w-4" />
+            </a>
           </div>
         </div>
       </footer>

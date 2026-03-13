@@ -1,5 +1,3 @@
-@import '@fontsource/cormorant-garamond/latin-600.css';
-@import '@fontsource/cormorant-garamond/latin-700.css';
 @import '@fontsource/manrope/latin-400.css';
 @import '@fontsource/manrope/latin-500.css';
 @import '@fontsource/manrope/latin-600.css';
@@ -10,15 +8,6 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --brand-ink: 11 18 20;
-    --brand-ivory: 244 238 224;
-    --brand-paper: 251 247 238;
-    --brand-gold: 227 190 100;
-    --brand-clay: 170 104 63;
-    --brand-sage: 126 149 119;
-  }
-
   * {
     box-sizing: border-box;
   }
@@ -30,10 +19,8 @@
   body {
     margin: 0;
     min-width: 320px;
-    background:
-      radial-gradient(circle at top left, rgba(227, 190, 100, 0.12), transparent 26%),
-      linear-gradient(180deg, #f8f2e4 0%, #efe6d3 100%);
-    color: rgb(var(--brand-ink));
+    background: #ffffff;
+    color: #101114;
     font-family: 'Manrope', sans-serif;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
@@ -46,15 +33,17 @@
     text-decoration: none;
   }
 
-  button,
-  input,
-  textarea {
+  button {
     font: inherit;
   }
 
+  img {
+    display: block;
+  }
+
   ::selection {
-    background: rgba(227, 190, 100, 0.35);
-    color: rgb(var(--brand-ink));
+    background: rgba(75, 107, 255, 0.18);
+    color: #101114;
   }
 
   #root {
@@ -63,170 +52,112 @@
 }
 
 @layer components {
-  .section-shell {
-    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  .page-shell {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 1140px;
+    padding-inline: 1.5rem;
   }
 
-  .eyebrow {
-    @apply inline-flex items-center rounded-full px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.34em];
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(16px);
+  .nav-link {
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    transition: color 0.3s ease;
+    color: rgba(0, 0, 0, 0.56);
   }
 
   .button-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-full bg-brand-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-brand-ink transition duration-500 hover:-translate-y-0.5 hover:bg-brand-ivory;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: #3563ff;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: #fff;
+    transition:
+      transform 0.3s ease,
+      background-color 0.3s ease;
   }
 
-  .button-secondary {
-    @apply inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-brand-ivory/[0.76] transition duration-500 hover:-translate-y-0.5 hover:text-white;
-    border: 1px solid rgba(255, 255, 255, 0.12);
+  .button-blue-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: #3563ff;
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: #fff;
+    transition:
+      transform 0.3s ease,
+      background-color 0.3s ease;
   }
 
-  .button-secondary:hover {
-    border-color: rgba(255, 255, 255, 0.24);
-    background: rgba(255, 255, 255, 0.06);
+  .hero-photo {
+    aspect-ratio: 1.1 / 0.9;
   }
 
-  .button-ink {
-    @apply inline-flex items-center justify-center gap-2 rounded-full bg-brand-ink px-6 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-brand-ivory transition duration-500 hover:-translate-y-0.5 hover:bg-black;
+  .logo-cloud {
+    @apply flex flex-wrap items-center justify-center gap-x-10 gap-y-5 py-3 text-center;
+    mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
   }
 
-  .hero-surface {
-    background:
-      radial-gradient(circle at top left, rgba(255, 255, 255, 0.72), transparent 30%),
-      linear-gradient(180deg, rgba(251, 247, 238, 0.96), rgba(236, 228, 212, 0.9));
-    @apply shadow-elevated backdrop-blur-sm;
-    border: 1px solid rgba(11, 18, 20, 0.08);
+  .logo-cloud-item {
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    color: rgba(0, 0, 0, 0.16);
   }
 
-  .hero-meta-chip {
-    @apply inline-flex items-center rounded-full px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-brand-ink/[0.6];
-    border: 1px solid rgba(11, 18, 20, 0.08);
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(12px);
+  .media-frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 24px 54px rgba(16, 17, 20, 0.08);
+    aspect-ratio: 2.55 / 1.35;
   }
 
-  .brand-storyboard {
-    @apply relative overflow-hidden rounded-[2.8rem] p-6 text-brand-ivory shadow-panel sm:p-8 lg:p-10;
-    border: 1px solid rgba(11, 18, 20, 0.08);
+  .team-card {
+    border-radius: 24px;
+    background: #fff;
   }
 
-  .story-pill {
-    @apply inline-flex items-center rounded-full px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-brand-ivory/[0.76];
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(12px);
+  .review-card {
+    @apply rounded-[24px] bg-white p-6;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 18px 42px rgba(16, 17, 20, 0.04);
   }
 
-  .story-panel {
-    @apply relative overflow-hidden rounded-[2.2rem] p-6 shadow-elevated sm:p-7;
+  .footer-link {
+    transition: color 0.3s ease;
   }
 
-  .story-panel-main {
-    @apply flex min-h-[22rem] flex-col justify-end;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.04),
-      rgba(255, 255, 255, 0.02)
-    );
+  .nav-link:hover,
+  .footer-link:hover {
+    color: #000;
   }
 
-  .story-panel-light {
-    @apply text-brand-ink;
-    border: 1px solid rgba(11, 18, 20, 0.08);
-    background: rgba(255, 255, 255, 0.78);
-    backdrop-filter: blur(18px);
+  .button-primary:hover,
+  .button-blue-ghost:hover {
+    transform: translateY(-2px);
+    background: #244ef0;
   }
 
-  .story-panel-gold {
-    @apply text-brand-ink;
-    background: linear-gradient(180deg, #e9c463 0%, #e0b752 100%);
-  }
-
-  .story-label {
-    @apply text-xs uppercase tracking-[0.28em];
-  }
-
-  .audience-spotlight {
-    @apply relative overflow-hidden rounded-[2.6rem] p-7 shadow-elevated sm:p-8 lg:p-10;
-  }
-
-  .audience-spotlight-dark {
-    background:
-      radial-gradient(circle at top right, rgba(227, 190, 100, 0.12), transparent 28%),
-      linear-gradient(135deg, #0f1719 0%, #182228 48%, #223038 100%);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-  }
-
-  .audience-spotlight-light {
-    background:
-      radial-gradient(circle at top left, rgba(227, 190, 100, 0.12), transparent 24%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(246, 240, 229, 0.92));
-    border: 1px solid rgba(11, 18, 20, 0.08);
-  }
-
-  .manifesto-mini-card {
-    @apply rounded-[1.8rem] p-6 shadow-soft backdrop-blur-sm transition duration-500 hover:-translate-y-1 hover:shadow-elevated;
-    border: 1px solid rgba(11, 18, 20, 0.06);
-    background: rgba(255, 255, 255, 0.72);
-  }
-
-  .manifesto-stage {
-    @apply relative overflow-hidden rounded-[2.6rem] p-6 shadow-elevated sm:p-8;
-    border: 1px solid rgba(11, 18, 20, 0.06);
-    background: rgba(255, 252, 247, 0.72);
-  }
-
-  .soft-card {
-    @apply rounded-[2rem] bg-white/70 p-6 shadow-soft backdrop-blur-sm transition duration-500 hover:-translate-y-1 hover:shadow-elevated sm:p-7;
-    border: 1px solid rgba(11, 18, 20, 0.08);
-  }
-
-  .soft-card:hover {
-    border-color: rgba(11, 18, 20, 0.14);
-  }
-
-  .service-card {
-    background:
-      radial-gradient(circle at top right, rgba(227, 190, 100, 0.12), transparent 32%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.02));
-    @apply rounded-[2.4rem] p-6 shadow-panel transition duration-500 hover:-translate-y-1 hover:bg-white/[0.04] sm:p-8;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .service-card:hover {
-    border-color: rgba(255, 255, 255, 0.16);
-  }
-
-  .contact-panel {
-    background:
-      linear-gradient(180deg, rgba(251, 247, 238, 0.96), rgba(241, 231, 211, 0.92)),
-      radial-gradient(circle at top right, rgba(170, 104, 63, 0.14), transparent 30%);
-    @apply border border-white/10 text-brand-ink;
-  }
-
-  .input-field {
-    @apply w-full rounded-[1.5rem] px-5 py-4 text-base text-brand-ink outline-none transition duration-300 placeholder:text-brand-ink/40 focus:bg-white focus:ring-4 focus:ring-brand-gold/20;
-    border: 1px solid rgba(11, 18, 20, 0.12);
-    background: rgba(255, 255, 255, 0.74);
-  }
-
-  .input-field:focus {
-    border-color: rgba(170, 104, 63, 0.4);
+  @media (min-width: 1024px) {
+    .page-shell {
+      padding-inline: 2rem;
+    }
   }
 }
 
 @layer utilities {
-  .grain {
-    background-image:
-      linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-    background-size: 3px 3px;
-    mask-image: radial-gradient(circle at center, black, transparent 82%);
-  }
-
   .text-balance {
     text-wrap: balance;
   }
