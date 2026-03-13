@@ -21,6 +21,7 @@ import caras1Image from './assets/caras1.jpg'
 import caras2Image from './assets/caras2.jpg'
 import caras3Image from './assets/caras3.jpg'
 import discoverVideo from './assets/video.mp4'
+import logoImage from './assets/logo.png'
 
 const navigation = [
   { label: 'Home', href: '#inicio' },
@@ -48,13 +49,6 @@ const partnerLogos = [
   'Piso Vivo',
 ]
 
-const aboutStats = [
-  { value: '3', label: 'Publicos clave' },
-  { value: '1', label: 'Ciudad de foco' },
-  { value: '360', label: 'Mediacion y seguimiento' },
-  { value: '1', label: 'Interlocutor claro' },
-]
-
 const teamCards = [
   {
     title: 'Mediacion',
@@ -76,15 +70,15 @@ const teamCards = [
 const reviews = [
   {
     title: 'Propietarios',
-    text: 'Hongares reduce friccion, filtra mejor y hace que la conversacion sea mas legible desde el inicio.',
+    text: 'Agradecido al momento de contactar a HONGARES, ya que la honestidad y la firmesa de su loable labor es muy importante, tanto por el trato y la transparencia de su trabajo. Agradezco ante mano por esta oportunidad.',
   },
   {
     title: 'Familias migrantes',
-    text: 'La documentacion se entiende mejor, el proceso se ordena y cada paso gana mas contexto y acompanamiento.',
+    text: 'Quiero agradecerte sinceramente por la excelente gestion y servicio que me brindaron al alquilarme el cuarto. Desde el principio, tu profesionalismo y amabilidad hicieron que todo el proceso fuera mucho mas facil y agradable. Me senti muy comodo y bien atendido. Totalmente recomendado.',
   },
   {
     title: 'ONGs y programas',
-    text: 'Cuando hay urgencia y varias partes implicadas, tener un interlocutor claro cambia por completo la operativa.',
+    text: 'Gente honesta, responsable y sobretodo con mucha empatia. Hicieron que nuestro proceso de mudanza sea llevadero y resolutivo. La habitacion esta tal cual la foto. Lo recomendaria 100%',
   },
 ]
 
@@ -136,6 +130,11 @@ type RevealProps = {
   delay?: number
 }
 
+type BrandMarkProps = {
+  className?: string
+  imageClassName?: string
+}
+
 function cn(...classes: Array<string | false | undefined>) {
   return classes.filter(Boolean).join(' ')
 }
@@ -155,17 +154,17 @@ function Reveal({ children, className, delay = 0 }: RevealProps) {
   )
 }
 
-function BrandMark() {
+function BrandMark({ className, imageClassName }: BrandMarkProps) {
   return (
-    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#eef3ff] text-[#4b6bff]">
-      <svg viewBox="0 0 64 64" className="h-5 w-5 fill-none stroke-current">
-        <path
-          d="M16 28L32 16l16 12v18H16V28Z"
-          strokeWidth="1.8"
-          strokeLinejoin="round"
-        />
-        <path d="M24 28v18M40 28v18" strokeWidth="1.8" strokeLinecap="round" />
-      </svg>
+    <div className={cn('relative overflow-hidden', className)}>
+      <img
+        src={logoImage}
+        alt="Hongares"
+        className={cn(
+          'absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 object-contain object-center',
+          imageClassName,
+        )}
+      />
     </div>
   )
 }
@@ -182,13 +181,13 @@ function App() {
         <div className="page-shell flex h-[74px] items-center justify-between gap-6">
           <a
             href="#inicio"
-            className="flex items-center gap-3"
+            className="flex items-center"
             onClick={() => setMenuOpen(false)}
           >
-            <BrandMark />
-            <span className="text-[1.05rem] font-semibold tracking-[-0.04em]">
-              Hongares
-            </span>
+            <BrandMark
+              className="h-[44px] w-[168px]"
+              imageClassName="scale-[2.08]"
+            />
           </a>
 
           <nav className="hidden items-center gap-8 lg:flex">
@@ -330,35 +329,29 @@ function App() {
         </section>
 
         <section id="resumen" className="page-shell py-16 sm:py-20 lg:py-24">
-          <div className="grid gap-10 lg:grid-cols-[0.96fr_0.74fr] lg:items-start">
-            <Reveal className="max-w-[32rem]">
-              <h2 className="text-[clamp(2.8rem,6vw,4.7rem)] font-semibold leading-[0.92] tracking-[-0.075em] text-[#111217]">
-                Una agencia para <span className="text-black/28">casos</span>{' '}
-                donde el contexto cambia la decision
+          <div className="grid gap-10">
+            <Reveal className="mx-auto max-w-[72rem] text-center">
+              <h2 className="text-[clamp(2.7rem,5.4vw,4.7rem)] font-semibold leading-[0.92] tracking-[-0.075em] text-[#111217]">
+                <span className="block md:whitespace-nowrap">
+                  Una agencia para <span className="text-black/28">casos</span>{' '}
+                  donde
+                </span>
+                <span className="block md:whitespace-nowrap">
+                  el contexto cambia la decision
+                </span>
               </h2>
-            </Reveal>
-
-            <Reveal delay={0.08}>
-              <div className="grid grid-cols-2 gap-x-10 gap-y-10 sm:gap-x-14">
-                {aboutStats.map((item) => (
-                  <div key={item.label}>
-                    <p className="text-[clamp(2.4rem,4.5vw,3.8rem)] font-semibold leading-none tracking-[-0.06em] text-[#111217]">
-                      {item.value}
-                    </p>
-                    <p className="mt-2 text-[0.72rem] uppercase tracking-[0.18em] text-black/46">
-                      {item.label}
-                    </p>
-                  </div>
-                ))}
-              </div>
             </Reveal>
           </div>
 
           <Reveal delay={0.14}>
             <p className="mx-auto mt-12 max-w-[54rem] text-center text-[1.18rem] leading-9 tracking-[-0.02em] text-black/62">
-              Hongares ordena alquileres en Valencia cuando la vivienda no se
-              entiende solo desde el mercado: traduce requisitos, media entre
-              partes y sostiene confianza durante todo el proceso.
+              Somos un grupo de emprendedores que ha vivido en primera persona
+              las dificultades de establecerse en un pais distinto buscando
+              mejores oportunidades para sus familias. Sabemos lo que hacemos y
+              los retos que aparecen en ese proceso, por eso, junto a un equipo
+              multicultural y asesores nacionales de Asociacion con Valores,
+              representamos una esperanza habitacional para muchas familias
+              inmigrantes y ONGs en Valencia.
             </p>
           </Reveal>
         </section>
@@ -477,7 +470,7 @@ function App() {
                       />
                     ))}
                   </div>
-                  <p className="mt-5 text-[1rem] leading-7 text-black/62">
+                  <p className="mt-5 whitespace-pre-line text-[1rem] leading-7 text-black/62">
                     {review.text}
                   </p>
                   <div className="mt-6 border-t border-black/[0.06] pt-4">
@@ -562,16 +555,14 @@ function App() {
         <div className="page-shell">
           <div className="grid gap-10 lg:grid-cols-[1.2fr_0.7fr_0.9fr]">
             <div className="max-w-[24rem]">
-              <div className="flex items-center gap-3">
-                <BrandMark />
-                <div>
-                  <p className="text-[1rem] font-semibold tracking-[-0.04em] text-[#111217]">
-                    Hongares
-                  </p>
-                  <p className="text-sm text-black/46">
-                    Vivienda, migracion y confianza en Valencia.
-                  </p>
-                </div>
+              <div>
+                <BrandMark
+                  className="h-[52px] w-[188px]"
+                  imageClassName="scale-[1.92]"
+                />
+                <p className="mt-3 text-sm text-black/46">
+                  Vivienda, migracion y confianza en Valencia.
+                </p>
               </div>
               <p className="mt-5 text-sm leading-7 text-black/56">
                 Una agencia que acompana operaciones de alquiler donde hace falta
