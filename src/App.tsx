@@ -32,22 +32,31 @@ const navigation = [
   { label: 'Contacto', href: '#contacto' },
 ]
 
-const audienceTags = ['Propietarios', 'Familias migrantes', 'ONGs']
-
 const heroNotes = [
   {
+    id: 'propietarios',
+    tag: 'Propietarios',
     title: 'Propietarios',
     text: 'Rigor, filtrado y acompaniamiento para alquilar con mas tranquilidad.',
+    icon: House,
   },
   {
+    id: 'familias-migrantes',
+    tag: 'Familias migrantes',
     title: 'Familias migrantes',
     text: 'Una gestion cercana para desbloquear acceso real a vivienda en Valencia.',
+    icon: Users2,
   },
   {
+    id: 'ongs',
+    tag: 'ONGs',
     title: 'ONGs y programas',
     text: 'Un interlocutor profesional para procesos de acogida con tiempos y contexto complejos.',
+    icon: Building2,
   },
 ]
+
+const audienceTags = heroNotes.map((note) => note.tag)
 
 const brandPositioning = {
   statement:
@@ -425,8 +434,20 @@ function App() {
               <div className="absolute left-0 top-16 h-[26rem] w-[26rem] rounded-full bg-white/[0.58] blur-[90px]" />
 
               <div className="relative mx-auto flex min-h-[calc(100svh-7rem)] max-w-7xl flex-col">
-                <div className="grid flex-1 gap-10 py-4 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-14 lg:py-8">
-                  <Reveal className="max-w-3xl">
+                <div className="flex flex-1 items-center py-4 lg:py-8">
+                  <Reveal className="max-w-4xl">
+                    <div className="mb-6 flex flex-wrap gap-2">
+                      {heroNotes.map((note) => (
+                        <a
+                          key={note.id}
+                          href={`#${note.id}`}
+                          className="rounded-full border border-brand-ink/[0.1] bg-white/45 px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-brand-ink/[0.66] backdrop-blur-sm transition duration-300 hover:border-brand-ink/[0.18] hover:bg-white/70 hover:text-brand-ink"
+                        >
+                          {note.tag}
+                        </a>
+                      ))}
+                    </div>
+
                     <h1 className="text-balance font-display text-[clamp(4rem,8vw,6.6rem)] leading-[0.9] tracking-[-0.045em] text-brand-ink">
                       Alquilar con rigor. <br />
                       Habitar con dignidad.
@@ -443,71 +464,125 @@ function App() {
                         <ArrowRight className="h-4 w-4" />
                       </a>
                       <a
-                        href="#manifiesto"
+                        href="#audiencias"
                         className="inline-flex items-center justify-center rounded-full border border-brand-ink/[0.12] px-6 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-brand-ink/[0.7] transition duration-500 hover:-translate-y-0.5 hover:border-brand-ink/[0.22] hover:bg-white/[0.55] hover:text-brand-ink"
                       >
                         Descubrir la propuesta
                       </a>
                     </div>
-                  </Reveal>
 
-                  <Reveal delay={0.15} className="relative">
-                    <div className="relative mx-auto max-w-[40rem] lg:ml-auto">
-                      <motion.div
-                        style={{ y: heroY }}
-                        className="hero-visual-main relative min-h-[30rem] overflow-hidden rounded-[2.5rem] p-6 shadow-panel sm:min-h-[34rem] sm:p-8"
-                      >
-                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_18%,rgba(227,190,100,0.22),transparent_18%),radial-gradient(circle_at_76%_22%,rgba(255,255,255,0.08),transparent_18%),linear-gradient(135deg,#0f1719_0%,#192429_46%,#223238_100%)]" />
-                        <div className="absolute -left-14 bottom-[-7rem] h-60 w-60 rounded-full border border-white/[0.08]" />
-                        <div className="absolute left-8 top-8 h-40 w-[48%] rounded-[2rem] border border-white/[0.1] bg-white/[0.05] backdrop-blur-sm sm:h-48" />
-                        <div className="absolute right-12 top-12 h-28 w-28 rounded-[1.8rem] border border-brand-gold/[0.28] bg-brand-gold/[0.08]" />
-                        <div className="absolute left-[42%] top-[34%] h-32 w-32 rounded-full border border-white/[0.08]" />
-
-                        <div className="relative flex h-full flex-col justify-between">
-                          <div className="flex flex-wrap gap-2">
-                            {audienceTags.map((tag) => (
-                              <span
-                                key={tag}
-                                className="rounded-full border border-white/[0.1] bg-white/[0.05] px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-brand-ivory/[0.76] backdrop-blur-sm"
-                              >
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
-
-                          <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
-                            <div className="max-w-sm">
-                              <p className="text-xs uppercase tracking-[0.3em] text-brand-ivory/[0.46]">
-                                Tres audiencias, una misma metodologia
-                              </p>
-                              <p className="mt-4 font-display text-4xl leading-[0.96] text-brand-ivory sm:text-[3rem]">
-                                Gestion clara para procesos de alquiler que
-                                requieren contexto y mediacion.
-                              </p>
-                            </div>
-
-                            <div className="grid gap-3">
-                              {heroNotes.map((note) => (
-                                <div
-                                  key={note.title}
-                                  className="rounded-[1.7rem] border border-white/[0.08] bg-white/[0.05] px-4 py-4 backdrop-blur-sm"
-                                >
-                                  <p className="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-brand-ivory/[0.5]">
-                                    {note.title}
-                                  </p>
-                                  <p className="mt-3 text-sm leading-6 text-brand-ivory/[0.72]">
-                                    {note.text}
-                                  </p>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                      </motion.div>
-                    </div>
+                    <p className="mt-10 max-w-xl text-[0.76rem] font-semibold uppercase tracking-[0.32em] text-brand-clay">
+                      Tres audiencias, una misma metodologia.
+                    </p>
                   </Reveal>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="audiencias" className="relative bg-[linear-gradient(180deg,#f5efe2_0%,#efe7d7_100%)] py-24 sm:py-28">
+          <div className="section-shell">
+            <Reveal className="max-w-3xl">
+              <span className="eyebrow border-brand-ink/[0.08] bg-white/75 text-brand-clay">
+                Audiencias
+              </span>
+              <h2 className="mt-6 text-balance font-display text-[clamp(3.2rem,6vw,5.4rem)] leading-[0.94] tracking-[-0.05em] text-brand-ink">
+                Gestion clara para procesos de alquiler que requieren contexto y mediacion.
+              </h2>
+              <p className="mt-6 max-w-2xl text-base leading-7 text-brand-ink/[0.68]">
+                El contenido que antes vivia dentro de la hero ahora respira mejor como bloques propios para cada frente de trabajo.
+              </p>
+            </Reveal>
+
+            <div className="mt-12 space-y-5">
+              {heroNotes.map((note, index) => {
+                const Icon = note.icon
+
+                return (
+                  <Reveal key={note.id} delay={0.08 * index}>
+                    <section
+                      id={note.id}
+                      className={cn(
+                        'audience-spotlight',
+                        index !== 1
+                          ? 'audience-spotlight-dark text-brand-ivory'
+                          : 'audience-spotlight-light text-brand-ink',
+                      )}
+                    >
+                      <div className="grid gap-8 lg:grid-cols-[0.6fr_1.4fr] lg:items-center">
+                        <div>
+                          <div
+                            className={cn(
+                              'flex h-14 w-14 items-center justify-center rounded-2xl border',
+                              index !== 1
+                                ? 'border-white/10 bg-white/[0.06] text-brand-gold'
+                                : 'border-brand-ink/[0.08] bg-brand-paper text-brand-clay',
+                            )}
+                          >
+                            <Icon className="h-6 w-6" />
+                          </div>
+                          <p
+                            className={cn(
+                              'mt-6 text-xs uppercase tracking-[0.28em]',
+                              index !== 1 ? 'text-brand-ivory/[0.44]' : 'text-brand-ink/[0.4]',
+                            )}
+                          >
+                            {index === 0
+                              ? 'Para propietarios'
+                              : index === 1
+                                ? 'Para familias migrantes'
+                                : 'Para ONGs y programas'}
+                          </p>
+                          <h3 className="mt-3 font-display text-[clamp(2.6rem,4vw,4rem)] leading-[0.92] tracking-[-0.04em]">
+                            {note.title}
+                          </h3>
+                        </div>
+
+                        <div className="grid gap-4 lg:max-w-3xl lg:grid-cols-[1.2fr_0.8fr]">
+                          <p
+                            className={cn(
+                              'text-lg leading-8',
+                              index !== 1 ? 'text-brand-ivory/[0.74]' : 'text-brand-ink/[0.72]',
+                            )}
+                          >
+                            {note.text}
+                          </p>
+                          <div
+                            className={cn(
+                              'rounded-[1.8rem] p-5',
+                              index !== 1
+                                ? 'border border-white/[0.08] bg-white/[0.04]'
+                                : 'border border-brand-ink/[0.08] bg-white/75',
+                            )}
+                          >
+                            <p
+                              className={cn(
+                                'text-[0.68rem] font-semibold uppercase tracking-[0.28em]',
+                                index !== 1 ? 'text-brand-ivory/[0.42]' : 'text-brand-ink/[0.38]',
+                              )}
+                            >
+                              Enfoque
+                            </p>
+                            <p
+                              className={cn(
+                                'mt-3 text-sm leading-6',
+                                index !== 1 ? 'text-brand-ivory/[0.7]' : 'text-brand-ink/[0.66]',
+                              )}
+                            >
+                              {index === 0
+                                ? 'Seleccion, mediacion y acompanamiento para reducir friccion desde el inicio.'
+                                : index === 1
+                                  ? 'Traduccion de requisitos y acompanamiento para abrir acceso real a vivienda.'
+                                  : 'Coordinacion profesional con tiempos, sensibilidad y capacidad de seguimiento.'}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                  </Reveal>
+                )
+              })}
             </div>
           </div>
         </section>

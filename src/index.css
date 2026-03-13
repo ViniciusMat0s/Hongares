@@ -107,13 +107,6 @@
     backdrop-filter: blur(12px);
   }
 
-  .hero-visual-main {
-    background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
-      linear-gradient(135deg, rgba(227, 190, 100, 0.08), rgba(170, 104, 63, 0.04));
-    @apply border border-white/10 shadow-panel backdrop-blur-xl;
-  }
-
   .brand-storyboard {
     @apply relative overflow-hidden rounded-[2.8rem] p-6 text-brand-ivory shadow-panel sm:p-8 lg:p-10;
     border: 1px solid rgba(11, 18, 20, 0.08);
@@ -154,6 +147,24 @@
 
   .story-label {
     @apply text-xs uppercase tracking-[0.28em];
+  }
+
+  .audience-spotlight {
+    @apply relative overflow-hidden rounded-[2.6rem] p-7 shadow-elevated sm:p-8 lg:p-10;
+  }
+
+  .audience-spotlight-dark {
+    background:
+      radial-gradient(circle at top right, rgba(227, 190, 100, 0.12), transparent 28%),
+      linear-gradient(135deg, #0f1719 0%, #182228 48%, #223038 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .audience-spotlight-light {
+    background:
+      radial-gradient(circle at top left, rgba(227, 190, 100, 0.12), transparent 24%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(246, 240, 229, 0.92));
+    border: 1px solid rgba(11, 18, 20, 0.08);
   }
 
   .manifesto-mini-card {
