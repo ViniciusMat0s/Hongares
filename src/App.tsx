@@ -309,9 +309,8 @@ function App() {
         <div className="absolute bottom-[-10rem] right-[-8rem] h-[24rem] w-[24rem] rounded-full bg-brand-clay/[0.15] blur-3xl" />
       </div>
 
-      <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="flex items-center justify-between rounded-full border border-white/10 bg-brand-ink/[0.72] px-4 py-3 text-brand-ivory shadow-panel backdrop-blur-xl">
+      <header className="fixed inset-x-0 top-0 z-50">
+        <div className="flex items-center justify-between border-b border-white/[0.08] bg-brand-ink/[0.82] px-4 py-3 text-brand-ivory shadow-panel backdrop-blur-xl sm:px-6 lg:px-8">
             <a
               href="#inicio"
               className="group flex items-center gap-3"
@@ -360,39 +359,38 @@ function App() {
             </button>
           </div>
 
-          <AnimatePresence>
-            {menuOpen ? (
-              <motion.div
-                initial={{ opacity: 0, y: -12 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                className="mt-3 overflow-hidden rounded-[2rem] border border-white/10 bg-brand-ink/90 p-4 text-brand-ivory shadow-panel backdrop-blur-xl lg:hidden"
-              >
-                <div className="grid gap-2">
-                  {navigation.map((item) => (
-                    <a
-                      key={item.label}
-                      href={item.href}
-                      className="rounded-2xl border border-white/[0.08] px-4 py-3 text-sm tracking-[0.14em] text-brand-ivory/75 transition duration-300 hover:border-white/20 hover:bg-white/5 hover:text-white"
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      {item.label}
-                    </a>
-                  ))}
+        <AnimatePresence>
+          {menuOpen ? (
+            <motion.div
+              initial={{ opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="border-b border-white/[0.08] bg-brand-ink/[0.94] px-4 py-4 text-brand-ivory shadow-panel backdrop-blur-xl sm:px-6 lg:hidden"
+            >
+              <div className="grid gap-2">
+                {navigation.map((item) => (
                   <a
-                    href="#contacto"
-                    className="mt-2 inline-flex items-center justify-center gap-2 rounded-2xl bg-brand-gold px-4 py-3 text-sm font-semibold text-brand-ink"
+                    key={item.label}
+                    href={item.href}
+                    className="border border-white/[0.08] px-4 py-3 text-sm tracking-[0.14em] text-brand-ivory/75 transition duration-300 hover:border-white/20 hover:bg-white/5 hover:text-white"
                     onClick={() => setMenuOpen(false)}
                   >
-                    Contactar
-                    <ArrowUpRight className="h-4 w-4" />
+                    {item.label}
                   </a>
-                </div>
-              </motion.div>
-            ) : null}
-          </AnimatePresence>
-        </div>
+                ))}
+                <a
+                  href="#contacto"
+                  className="mt-2 inline-flex items-center justify-center gap-2 bg-brand-gold px-4 py-3 text-sm font-semibold text-brand-ink"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Contactar
+                  <ArrowUpRight className="h-4 w-4" />
+                </a>
+              </div>
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
       </header>
 
       <main className="relative z-10">
