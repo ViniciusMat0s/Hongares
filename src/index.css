@@ -114,6 +114,48 @@
     @apply border border-white/10 shadow-panel backdrop-blur-xl;
   }
 
+  .brand-storyboard {
+    @apply relative overflow-hidden rounded-[2.8rem] p-6 text-brand-ivory shadow-panel sm:p-8 lg:p-10;
+    border: 1px solid rgba(11, 18, 20, 0.08);
+  }
+
+  .story-pill {
+    @apply inline-flex items-center rounded-full px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-brand-ivory/[0.76];
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+  }
+
+  .story-panel {
+    @apply relative overflow-hidden rounded-[2.2rem] p-6 shadow-elevated sm:p-7;
+  }
+
+  .story-panel-main {
+    @apply flex min-h-[22rem] flex-col justify-end;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.04),
+      rgba(255, 255, 255, 0.02)
+    );
+  }
+
+  .story-panel-light {
+    @apply text-brand-ink;
+    border: 1px solid rgba(11, 18, 20, 0.08);
+    background: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(18px);
+  }
+
+  .story-panel-gold {
+    @apply text-brand-ink;
+    background: linear-gradient(180deg, #e9c463 0%, #e0b752 100%);
+  }
+
+  .story-label {
+    @apply text-xs uppercase tracking-[0.28em];
+  }
+
   .manifesto-mini-card {
     @apply rounded-[1.8rem] p-6 shadow-soft backdrop-blur-sm transition duration-500 hover:-translate-y-1 hover:shadow-elevated;
     border: 1px solid rgba(11, 18, 20, 0.06);

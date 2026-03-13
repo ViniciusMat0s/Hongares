@@ -24,12 +24,15 @@ import {
 } from 'lucide-react'
 
 const navigation = [
+  { label: 'Posicionamiento', href: '#posicionamiento' },
   { label: 'Manifiesto', href: '#manifiesto' },
   { label: 'Servicios', href: '#servicios' },
   { label: 'Metodo', href: '#metodo' },
   { label: 'Impacto', href: '#impacto' },
   { label: 'Contacto', href: '#contacto' },
 ]
+
+const audienceTags = ['Propietarios', 'Familias migrantes', 'ONGs']
 
 const heroNotes = [
   {
@@ -45,6 +48,15 @@ const heroNotes = [
     text: 'Un interlocutor profesional para procesos de acogida con tiempos y contexto complejos.',
   },
 ]
+
+const brandPositioning = {
+  statement:
+    'Una agencia que entiende vivienda, migracion y confianza en la misma conversacion.',
+  tone:
+    'Cercana, creible y elegante sin caer en la estetica fria de una inmobiliaria convencional.',
+  differentialTitle: 'Primera agencia en Valencia',
+  differentialText: 'Gestion de alquiler para inmigrantes y ONGs.',
+}
 
 const audienceCards = [
   {
@@ -440,10 +452,10 @@ function App() {
                   </Reveal>
 
                   <Reveal delay={0.15} className="relative">
-                    <div className="relative mx-auto max-w-[40rem] pb-10 lg:ml-auto lg:pb-0">
+                    <div className="relative mx-auto max-w-[40rem] lg:ml-auto">
                       <motion.div
                         style={{ y: heroY }}
-                        className="hero-visual-main relative h-[24rem] overflow-hidden rounded-[2.5rem] p-6 shadow-panel sm:h-[29rem] sm:p-8"
+                        className="hero-visual-main relative min-h-[30rem] overflow-hidden rounded-[2.5rem] p-6 shadow-panel sm:min-h-[34rem] sm:p-8"
                       >
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_18%,rgba(227,190,100,0.22),transparent_18%),radial-gradient(circle_at_76%_22%,rgba(255,255,255,0.08),transparent_18%),linear-gradient(135deg,#0f1719_0%,#192429_46%,#223238_100%)]" />
                         <div className="absolute -left-14 bottom-[-7rem] h-60 w-60 rounded-full border border-white/[0.08]" />
@@ -453,110 +465,104 @@ function App() {
 
                         <div className="relative flex h-full flex-col justify-between">
                           <div className="flex flex-wrap gap-2">
-                            {heroNotes.map((note) => (
+                            {audienceTags.map((tag) => (
                               <span
-                                key={note.title}
+                                key={tag}
                                 className="rounded-full border border-white/[0.1] bg-white/[0.05] px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-brand-ivory/[0.76] backdrop-blur-sm"
                               >
-                                {note.title}
+                                {tag}
                               </span>
                             ))}
                           </div>
 
-                          <div className="max-w-sm">
-                            <p className="text-xs uppercase tracking-[0.3em] text-brand-ivory/[0.46]">
-                              Posicionamiento
-                            </p>
-                            <p className="mt-4 font-display text-4xl leading-[0.96] text-brand-ivory sm:text-[3.2rem]">
-                              Una agencia que entiende vivienda, migracion y
-                              confianza en la misma conversacion.
-                            </p>
+                          <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
+                            <div className="max-w-sm">
+                              <p className="text-xs uppercase tracking-[0.3em] text-brand-ivory/[0.46]">
+                                Tres audiencias, una misma metodologia
+                              </p>
+                              <p className="mt-4 font-display text-4xl leading-[0.96] text-brand-ivory sm:text-[3rem]">
+                                Gestion clara para procesos de alquiler que
+                                requieren contexto y mediacion.
+                              </p>
+                            </div>
+
+                            <div className="grid gap-3">
+                              {heroNotes.map((note) => (
+                                <div
+                                  key={note.title}
+                                  className="rounded-[1.7rem] border border-white/[0.08] bg-white/[0.05] px-4 py-4 backdrop-blur-sm"
+                                >
+                                  <p className="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-brand-ivory/[0.5]">
+                                    {note.title}
+                                  </p>
+                                  <p className="mt-3 text-sm leading-6 text-brand-ivory/[0.72]">
+                                    {note.text}
+                                  </p>
+                                </div>
+                              ))}
+                            </div>
                           </div>
                         </div>
-                      </motion.div>
-
-                      <motion.div
-                        initial={{ opacity: 0, x: 30, y: 16 }}
-                        whileInView={{ opacity: 1, x: 0, y: 0 }}
-                        viewport={{ once: true, amount: 0.5 }}
-                        transition={{
-                          duration: 0.85,
-                          delay: 0.25,
-                          ease: [0.22, 1, 0.36, 1],
-                        }}
-                        className="absolute right-0 top-8 hidden w-44 rounded-[2rem] border border-brand-ink/[0.08] bg-white/[0.74] p-5 shadow-elevated backdrop-blur-sm sm:block"
-                      >
-                        <p className="text-xs uppercase tracking-[0.28em] text-brand-ink/[0.42]">
-                          Tono de marca
-                        </p>
-                        <p className="mt-4 text-sm leading-6 text-brand-ink/[0.72]">
-                          Cercana, creible y elegante sin caer en la estetica
-                          fria de una inmobiliaria convencional.
-                        </p>
-                      </motion.div>
-
-                      <motion.div
-                        initial={{ opacity: 0, x: -18, y: 24 }}
-                        whileInView={{ opacity: 1, x: 0, y: 0 }}
-                        viewport={{ once: true, amount: 0.5 }}
-                        transition={{
-                          duration: 0.9,
-                          delay: 0.35,
-                          ease: [0.22, 1, 0.36, 1],
-                        }}
-                        className="absolute -bottom-2 right-6 max-w-[16rem] rounded-[2rem] bg-brand-gold p-5 text-brand-ink shadow-elevated sm:-bottom-10 sm:right-8"
-                      >
-                        <p className="text-xs uppercase tracking-[0.28em] text-brand-ink/[0.55]">
-                          Diferencial
-                        </p>
-                        <p className="mt-4 font-display text-3xl leading-[0.95]">
-                          Primera agencia en Valencia
-                        </p>
-                        <p className="mt-3 text-sm leading-6 text-brand-ink/[0.76]">
-                          Gestion de alquiler para inmigrantes y ONGs.
-                        </p>
                       </motion.div>
                     </div>
                   </Reveal>
                 </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-                <div className="mt-10 grid gap-4 border-t border-brand-ink/[0.08] pt-6 xl:grid-cols-[0.9fr_1.1fr]">
-                  <Reveal className="rounded-[2rem] border border-brand-ink/[0.08] bg-white/[0.58] p-6 shadow-soft backdrop-blur-sm">
-                    <p className="text-xs uppercase tracking-[0.28em] text-brand-ink/[0.42]">
-                      Desde la experiencia vivida
+        <section id="posicionamiento" className="relative bg-brand-ivory pb-24 sm:pb-28">
+          <div className="section-shell">
+            <Reveal className="brand-storyboard">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_18%,rgba(227,190,100,0.18),transparent_18%),radial-gradient(circle_at_82%_24%,rgba(255,255,255,0.08),transparent_18%),linear-gradient(135deg,#101719_0%,#182228_48%,#223038_100%)]" />
+              <div className="absolute -left-20 bottom-[-5rem] h-64 w-64 rounded-full border border-white/[0.08]" />
+              <div className="absolute left-[46%] top-[30%] hidden h-36 w-36 rounded-full border border-white/[0.08] lg:block" />
+
+              <div className="relative">
+                <div className="flex flex-wrap gap-2">
+                  {audienceTags.map((tag) => (
+                    <span key={tag} className="story-pill">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="mt-8 grid gap-5 lg:grid-cols-[1.45fr_0.8fr] lg:items-start">
+                  <div className="story-panel story-panel-main">
+                    <p className="story-label text-brand-ivory/[0.5]">
+                      Posicionamiento
                     </p>
-                    <p className="mt-4 max-w-md font-display text-4xl leading-[0.95] text-brand-ink">
-                      Una marca nacida para humanizar el acceso a hogar.
-                    </p>
-                  </Reveal>
+                    <h2 className="mt-6 max-w-3xl font-display text-[clamp(3rem,5vw,5.2rem)] leading-[0.94] tracking-[-0.05em] text-brand-ivory">
+                      {brandPositioning.statement}
+                    </h2>
+                  </div>
 
-                  <div className="grid gap-4 md:grid-cols-3">
-                    {heroNotes.map((note, index) => {
-                      const Icon =
-                        index === 0 ? House : index === 1 ? Users2 : Building2
+                  <div className="grid gap-5">
+                    <div className="story-panel story-panel-light">
+                      <p className="story-label text-brand-ink/[0.42]">
+                        Tono de marca
+                      </p>
+                      <p className="mt-4 max-w-sm text-base leading-8 text-brand-ink/[0.72]">
+                        {brandPositioning.tone}
+                      </p>
+                    </div>
 
-                      return (
-                        <Reveal
-                          key={note.title}
-                          delay={0.08 * index}
-                          className="rounded-[1.9rem] border border-brand-ink/[0.08] bg-white/[0.58] p-5 shadow-soft backdrop-blur-sm transition duration-500 hover:-translate-y-1 hover:border-brand-ink/[0.14] hover:shadow-elevated"
-                        >
-                          <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-brand-ink/[0.08] bg-brand-paper">
-                            <Icon className="h-5 w-5 text-brand-clay" />
-                          </div>
-                          <p className="mt-5 text-sm font-semibold uppercase tracking-[0.18em] text-brand-ink">
-                            {note.title}
-                          </p>
-                          <p className="mt-2 text-sm leading-6 text-brand-ink/[0.68]">
-                            {note.text}
-                          </p>
-                        </Reveal>
-                      )
-                    })}
+                    <div className="story-panel story-panel-gold">
+                      <p className="story-label text-brand-ink/[0.55]">
+                        Diferencial
+                      </p>
+                      <p className="mt-4 max-w-sm font-display text-[clamp(2.2rem,4vw,3.2rem)] leading-[0.94] text-brand-ink">
+                        {brandPositioning.differentialTitle}
+                      </p>
+                      <p className="mt-3 max-w-xs text-base leading-7 text-brand-ink/[0.76]">
+                        {brandPositioning.differentialText}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </Reveal>
           </div>
         </section>
 
