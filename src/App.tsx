@@ -24,11 +24,11 @@ import discoverVideo from './assets/video.mp4'
 import logoImage from './assets/logo.png'
 
 const navigation = [
-  { label: 'Home', href: '#inicio' },
-  { label: 'About', href: '#resumen' },
-  { label: 'Discover', href: '#discover' },
-  { label: 'Team', href: '#equipo' },
-  { label: 'Contact', href: '#contacto' },
+  { label: 'Inicio', href: '#inicio' },
+  { label: 'Sobre', href: '#resumen' },
+  { label: 'Descubrir', href: '#discover' },
+  { label: 'Equipo', href: '#equipo' },
+  { label: 'Contacto', href: '#contacto' },
 ]
 
 const mailHref = 'mailto:francisco@hongares.com'
@@ -51,18 +51,21 @@ const partnerLogos = [
 
 const teamCards = [
   {
-    title: 'Mediacion',
-    role: 'Propietarios y familias',
+    title: 'CONFIANZA',
+    description:
+      'Estamos edificados con valores de humildad, transparencia y honestidad garantizando un servicio de calidad en el que ambas partes salgan beneficiadas.',
     image: caras1Image,
   },
   {
-    title: 'Coordinacion',
-    role: 'Casos, requisitos y tiempos',
+    title: 'PROFESIONALIDAD',
+    description:
+      'Somos un grupo de profesionales especializado en la busqueda y gestion de alquileres para este conglomerado en desventaja en el mercado inmobiliario.',
     image: caras2Image,
   },
   {
-    title: 'Presencia local',
-    role: 'Valencia y seguimiento real',
+    title: 'IMPACTO SOCIAL',
+    description:
+      'Nuestra iniciativa colabora a mejorar la insercion social de familias inmigrantes procedentes de America, Europa y otros continentes con un impacto social positivo.',
     image: caras3Image,
   },
 ]
@@ -417,15 +420,15 @@ function App() {
                     />
                   </div>
                   <div className="mt-4 flex items-start justify-between gap-4">
-                    <div>
-                      <h3 className="text-[1.45rem] font-semibold tracking-[-0.04em] text-[#111217]">
+                    <div className="max-w-[22rem]">
+                      <h3 className="text-[1.32rem] font-semibold tracking-[-0.04em] text-[#111217]">
                         {card.title}
                       </h3>
-                      <p className="mt-1 text-xs uppercase tracking-[0.12em] text-black/42">
-                        {card.role}
+                      <p className="mt-2 text-sm leading-6 text-black/58">
+                        {card.description}
                       </p>
                     </div>
-                    <div className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#f1f3f7] text-black/48">
+                    <div className="mt-1 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#f1f3f7] text-black/48">
                       <ArrowUpRight className="h-4 w-4" />
                     </div>
                   </div>
