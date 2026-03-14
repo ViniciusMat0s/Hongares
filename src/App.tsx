@@ -76,15 +76,15 @@ const teamCards = [
 
 const reviews = [
   {
-    title: 'Propietarios',
+    title: 'Honestidade',
     text: 'Agradecido al momento de contactar a HONGARES, ya que la honestidad y la firmesa de su loable labor es muy importante, tanto por el trato y la transparencia de su trabajo. Agradezco ante mano por esta oportunidad.',
   },
   {
-    title: 'Familias migrantes',
+    title: 'Amabilidad',
     text: 'Quiero agradecerte sinceramente por la excelente gestion y servicio que me brindaron al alquilarme el cuarto. Desde el principio, tu profesionalismo y amabilidad hicieron que todo el proceso fuera mucho mas facil y agradable. Me senti muy comodo y bien atendido. Totalmente recomendado.',
   },
   {
-    title: 'ONGs y programas',
+    title: 'Responsable',
     text: 'Gente honesta, responsable y sobretodo con mucha empatia. Hicieron que nuestro proceso de mudanza sea llevadero y resolutivo. La habitacion esta tal cual la foto. Lo recomendaria 100%',
   },
 ]
