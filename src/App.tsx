@@ -34,21 +34,23 @@ const navigation = [
 const mailHref = 'mailto:francisco@hongares.com'
 const phoneHref = 'tel:+34605592599'
 const whatsappHref =
-  'https://wa.me/34605592599?text=Hola%20Hongares,%20quiero%20recibir%20mas%20informacion.'
+  'https://wa.me/34605592599?text=Hola%20Hongares,%20quiero%20una%20solucion%20de%20alquiler%20clara,%20segura%20y%20bien%20acompanada%20en%20Valencia.%20Quiero%20mas%20informacion.'
+const vennityWhatsappHref =
+  'https://wa.me/5551989544006?text=Hola%20Vennity,%20quiero%20hablar%20sobre%20un%20sitio%20web.'
 const mapHref =
   'https://maps.google.com/?q=Calle+Santa+Cruz+de+Tenerife+7,+Valencia'
 
 const partnerLogos = [
-  'Casa Clara',
-  'Puente Social',
-  'Habita Local',
-  'Valencia Base',
-  'Contexto',
-  'Red Hogar',
-  'Nodo Vivienda',
-  'Acogida+',
-  'Clave Casa',
-  'Piso Vivo',
+  'Criterio',
+  'Arraigo',
+  'Mediacion',
+  'Entorno',
+  'Certeza',
+  'Anclaje',
+  'Transparencia',
+  'Horizonte',
+  'Identidad',
+  'Proximidad',
 ]
 
 const teamCards = [
@@ -140,7 +142,7 @@ type BrandMarkProps = {
   imageClassName?: string
 }
 
-type SocialPlatform = 'facebook' | 'instagram' | 'twitter' | 'mail'
+type SocialPlatform = 'facebook' | 'instagram' | 'mail'
 
 type SocialLink = {
   label: string
@@ -158,10 +160,6 @@ const socialLinks: SocialLink[] = [
     label: 'Instagram',
     href: 'https://instagram.com/hongares_valencia',
     platform: 'instagram',
-  },
-  {
-    label: 'Twitter',
-    platform: 'twitter',
   },
   {
     label: 'Email',
@@ -223,14 +221,6 @@ function SocialIcon({ platform }: { platform: SocialPlatform }) {
     )
   }
 
-  if (platform === 'twitter') {
-    return (
-      <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 fill-current">
-        <path d="M18.9 3H21l-4.6 5.2L21.8 21h-4.2l-3.3-4.3L10.6 21H8.5l5-5.7L3 3h4.3l3 4 3.6-4Zm-.7 16.2h1.2L7.7 4.7H6.4l11.8 14.5Z" />
-      </svg>
-    )
-  }
-
   return <Mail className="h-4 w-4" aria-hidden="true" />
 }
 
@@ -243,7 +233,7 @@ function App() {
   return (
     <div className="min-h-screen overflow-x-clip bg-white text-[#4b5d76]">
       <header className="fixed inset-x-0 top-0 z-50 border-b border-black/[0.05] bg-white/88 backdrop-blur-xl">
-        <div className="page-shell flex h-[74px] items-center justify-between gap-6">
+        <div className="header-shell flex h-[74px] items-center justify-between gap-6">
           <a
             href="#inicio"
             className="flex items-center"
@@ -600,8 +590,8 @@ function App() {
 
       <footer className="border-t border-black/[0.06] bg-[#fff8e8] pb-8 pt-10">
         <div className="page-shell">
-          <div className="grid gap-10 lg:grid-cols-[1.2fr_0.7fr_0.9fr]">
-            <div className="max-w-[24rem]">
+          <div className="grid gap-10 text-center lg:grid-cols-[1.2fr_0.7fr_0.9fr] lg:text-left">
+            <div className="mx-auto max-w-[24rem] lg:mx-0">
               <div>
                 <BrandMark
                   className="h-[52px] w-[188px]"
@@ -621,7 +611,7 @@ function App() {
               <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-black/38">
                 Navegacion
               </p>
-              <div className="mt-4 grid gap-3 text-sm text-black/58">
+              <div className="mt-4 grid justify-items-center gap-3 text-sm text-black/58 lg:justify-items-start">
                 {navigation.map((item) => (
                   <a key={item.label} href={item.href} className="footer-link">
                     {item.label}
@@ -634,7 +624,7 @@ function App() {
               <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-black/38">
                 Contacto
               </p>
-              <div className="mt-4 grid gap-3 text-sm text-black/58">
+              <div className="mt-4 grid justify-items-center gap-3 text-sm text-black/58 lg:justify-items-start">
                 <a href={phoneHref} className="footer-link">
                   605 592 599
                 </a>
@@ -656,7 +646,7 @@ function App() {
                 <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-black/38">
                   Redes
                 </p>
-                <div className="mt-4 flex flex-wrap gap-3">
+                <div className="mt-4 flex flex-wrap justify-center gap-3 lg:justify-start">
                   {socialLinks.map((item) => {
                     const sharedProps = {
                       className: cn(
@@ -687,9 +677,16 @@ function App() {
             </div>
           </div>
 
-          <div className="mt-10 flex flex-col gap-4 border-t border-black/[0.06] pt-6 text-sm text-black/44 sm:flex-row sm:items-center sm:justify-between">
+          <div className="mt-10 flex flex-col items-center gap-4 border-t border-black/[0.06] pt-6 text-center text-sm text-black/44 sm:flex-row sm:items-center sm:justify-between sm:text-left">
             <p>© 2026 Hongares. Todos los derechos reservados.</p>
-            <p>Gestion de alquiler con sensibilidad humana y criterio local.</p>
+            <a
+              href={vennityWhatsappHref}
+              target="_blank"
+              rel="noreferrer"
+              className="footer-link"
+            >
+              Desarrollado por Vennity ®
+            </a>
           </div>
         </div>
       </footer>
