@@ -33,6 +33,8 @@ const navigation = [
 
 const mailHref = 'mailto:francisco@hongares.com'
 const phoneHref = 'tel:+34605592599'
+const whatsappHref =
+  'https://wa.me/34605592599?text=Hola%20Hongares,%20quiero%20recibir%20mas%20informacion.'
 const mapHref =
   'https://maps.google.com/?q=Calle+Santa+Cruz+de+Tenerife+7,+Valencia'
 
@@ -138,6 +140,36 @@ type BrandMarkProps = {
   imageClassName?: string
 }
 
+type SocialPlatform = 'facebook' | 'instagram' | 'twitter' | 'mail'
+
+type SocialLink = {
+  label: string
+  href?: string
+  platform: SocialPlatform
+}
+
+const socialLinks: SocialLink[] = [
+  {
+    label: 'Facebook',
+    href: 'https://www.facebook.com/share/1GGuUDfkBc/?mibextid=wwXlfr',
+    platform: 'facebook',
+  },
+  {
+    label: 'Instagram',
+    href: 'https://instagram.com/hongares_valencia',
+    platform: 'instagram',
+  },
+  {
+    label: 'Twitter',
+    platform: 'twitter',
+  },
+  {
+    label: 'Email',
+    href: mailHref,
+    platform: 'mail',
+  },
+]
+
 function cn(...classes: Array<string | false | undefined>) {
   return classes.filter(Boolean).join(' ')
 }
@@ -172,6 +204,36 @@ function BrandMark({ className, imageClassName }: BrandMarkProps) {
   )
 }
 
+function SocialIcon({ platform }: { platform: SocialPlatform }) {
+  if (platform === 'facebook') {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 fill-current">
+        <path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.6 1.7-1.6H16.8V4.8c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5V11H7v3h2.8v8h3.7Z" />
+      </svg>
+    )
+  }
+
+  if (platform === 'instagram') {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 fill-none stroke-current">
+        <rect x="3.5" y="3.5" width="17" height="17" rx="4.5" strokeWidth="1.8" />
+        <circle cx="12" cy="12" r="4.2" strokeWidth="1.8" />
+        <circle cx="17.3" cy="6.8" r="1" fill="currentColor" stroke="none" />
+      </svg>
+    )
+  }
+
+  if (platform === 'twitter') {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 fill-current">
+        <path d="M18.9 3H21l-4.6 5.2L21.8 21h-4.2l-3.3-4.3L10.6 21H8.5l5-5.7L3 3h4.3l3 4 3.6-4Zm-.7 16.2h1.2L7.7 4.7H6.4l11.8 14.5Z" />
+      </svg>
+    )
+  }
+
+  return <Mail className="h-4 w-4" aria-hidden="true" />
+}
+
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const { scrollYProgress } = useScroll()
@@ -201,11 +263,13 @@ function App() {
             ))}
           </nav>
 
-          <div className="hidden items-center gap-5 lg:flex">
-            <a href={mailHref} className="nav-link">
-              Email
-            </a>
-            <a href="#contacto" className="button-primary">
+          <div className="hidden items-center lg:flex">
+            <a
+              href={whatsappHref}
+              target="_blank"
+              rel="noreferrer"
+              className="button-primary"
+            >
               Hablar ahora
             </a>
           </div>
@@ -241,7 +305,9 @@ function App() {
                   </a>
                 ))}
                 <a
-                  href="#contacto"
+                  href={whatsappHref}
+                  target="_blank"
+                  rel="noreferrer"
                   className="button-primary mt-2 justify-center"
                   onClick={() => setMenuOpen(false)}
                 >
@@ -271,7 +337,12 @@ function App() {
               </p>
 
                 <div className="mt-8 flex flex-wrap items-center gap-5">
-                  <a href="#discover" className="button-primary">
+                  <a
+                    href={whatsappHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="button-primary"
+                  >
                     Explorar propuesta
                   </a>
                 </div>
@@ -381,7 +452,12 @@ function App() {
             </Reveal>
 
             <Reveal delay={0.08}>
-              <a href={mailHref} className="button-blue-ghost">
+              <a
+                href={whatsappHref}
+                target="_blank"
+                rel="noreferrer"
+                className="button-blue-ghost"
+              >
                 Ver mas
               </a>
             </Reveal>
@@ -472,7 +548,12 @@ function App() {
                 </p>
 
                 <div className="mt-8 flex flex-wrap gap-4">
-                  <a href={mailHref} className="button-primary">
+                  <a
+                    href={whatsappHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="button-primary"
+                  >
                     Iniciar conversacion
                   </a>
                 </div>
@@ -569,6 +650,39 @@ function App() {
                   Valencia
                   <ArrowRight className="h-4 w-4" />
                 </a>
+              </div>
+
+              <div className="mt-6">
+                <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-black/38">
+                  Redes
+                </p>
+                <div className="mt-4 flex flex-wrap gap-3">
+                  {socialLinks.map((item) => {
+                    const sharedProps = {
+                      className: cn(
+                        'social-link',
+                        item.href ? '' : 'social-link-disabled',
+                      ),
+                      'aria-label': item.label,
+                    }
+
+                    return item.href ? (
+                      <a
+                        key={item.label}
+                        href={item.href}
+                        target={item.href.startsWith('http') ? '_blank' : undefined}
+                        rel={item.href.startsWith('http') ? 'noreferrer' : undefined}
+                        {...sharedProps}
+                      >
+                        <SocialIcon platform={item.platform} />
+                      </a>
+                    ) : (
+                      <span key={item.label} {...sharedProps}>
+                        <SocialIcon platform={item.platform} />
+                      </span>
+                    )
+                  })}
+                </div>
               </div>
             </div>
           </div>

@@ -213,6 +213,35 @@
     transition: color 0.3s ease;
   }
 
+  .social-link {
+    display: inline-flex;
+    height: 2.75rem;
+    width: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    border: 1px solid rgba(75, 93, 118, 0.12);
+    background: rgba(255, 255, 255, 0.88);
+    color: var(--brand-dark);
+    transition:
+      transform 0.3s ease,
+      border-color 0.3s ease,
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+
+  .social-link:hover {
+    transform: translateY(-2px);
+    border-color: rgba(242, 196, 77, 0.48);
+    background: var(--brand-yellow-soft);
+    color: var(--brand-dark);
+  }
+
+  .social-link-disabled {
+    cursor: default;
+    opacity: 0.45;
+  }
+
   .nav-link:hover,
   .footer-link:hover {
     color: var(--brand-dark);
