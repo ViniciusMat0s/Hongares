@@ -254,11 +254,11 @@ function App() {
       </header>
 
       <main className="pt-[74px]">
-        <section id="inicio" className="page-shell relative py-10 sm:py-14 lg:py-16">
+        <section id="inicio" className="hero-shell relative py-10 sm:py-14 lg:py-16">
           <div className="pointer-events-none absolute left-[-6rem] top-10 h-52 w-52 rounded-full bg-[#fff2c7] blur-3xl" />
 
-          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-            <Reveal className="max-w-[34rem] pt-6">
+          <div className="grid gap-12 lg:grid-cols-[1fr_0.95fr] lg:items-center">
+            <Reveal className="max-w-[39rem] pt-6">
               <h1 className="text-[clamp(3.3rem,7.8vw,5.8rem)] font-semibold leading-[0.9] tracking-[-0.075em] text-[#4b5d76]">
                 Alquila con <span className="text-[#f2c44d]">confianza</span>.{' '}
                 <br className="hidden sm:block" />
@@ -419,24 +419,11 @@ function App() {
 
         <section className="page-shell pb-20 pt-2 sm:pb-24" id="testimonios">
           <Reveal className="max-w-[42rem]">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div className="flex flex-col gap-4">
               <h2 className="max-w-[32rem] text-[clamp(2.6rem,5.5vw,4.15rem)] font-semibold leading-[0.94] tracking-[-0.075em] text-[#4b5d76]">
                 Confianza real, <span className="text-black/28">contada</span>{' '}
                 por quienes la viven
               </h2>
-              <div className="inline-flex items-center gap-3 rounded-full bg-[#fff6de] px-4 py-2 text-sm font-medium text-black/62">
-                <div className="flex -space-x-2">
-                  {teamCards.slice(0, 2).map((item) => (
-                    <img
-                      key={item.title}
-                      src={item.image}
-                      alt={item.title}
-                      className="h-7 w-7 rounded-full border-2 border-white object-cover"
-                    />
-                  ))}
-                </div>
-                Casos coordinados
-              </div>
             </div>
           </Reveal>
 
