@@ -179,7 +179,7 @@ function App() {
   const heroImageScale = useTransform(scrollYProgress, [0, 0.18], [1, 1.03])
 
   return (
-    <div className="min-h-screen overflow-x-clip bg-white text-[#101114]">
+    <div className="min-h-screen overflow-x-clip bg-white text-[#4b5d76]">
       <header className="fixed inset-x-0 top-0 z-50 border-b border-black/[0.05] bg-white/88 backdrop-blur-xl">
         <div className="page-shell flex h-[74px] items-center justify-between gap-6">
           <a
@@ -212,7 +212,7 @@ function App() {
 
           <button
             type="button"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-black/[0.08] text-[#101114] lg:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-black/[0.08] text-[#4b5d76] lg:hidden"
             aria-label={menuOpen ? 'Cerrar menu' : 'Abrir menu'}
             onClick={() => setMenuOpen((current) => !current)}
           >
@@ -255,29 +255,26 @@ function App() {
 
       <main className="pt-[74px]">
         <section id="inicio" className="page-shell relative py-10 sm:py-14 lg:py-16">
-          <div className="pointer-events-none absolute left-[-6rem] top-10 h-52 w-52 rounded-full bg-[#eef3ff] blur-3xl" />
+          <div className="pointer-events-none absolute left-[-6rem] top-10 h-52 w-52 rounded-full bg-[#fff2c7] blur-3xl" />
 
           <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
             <Reveal className="max-w-[34rem] pt-6">
-              <h1 className="text-[clamp(3.3rem,7.8vw,5.8rem)] font-semibold leading-[0.9] tracking-[-0.075em] text-[#111217]">
-                Alquila con <span className="text-[#4b6bff]">confianza</span>{' '}
-                y contexto real
+              <h1 className="text-[clamp(3.3rem,7.8vw,5.8rem)] font-semibold leading-[0.9] tracking-[-0.075em] text-[#4b5d76]">
+                Alquila con <span className="text-[#f2c44d]">confianza</span>.{' '}
+                <br className="hidden sm:block" />
+                Tu tranquilidad no es negociable.
               </h1>
               <p className="mt-6 max-w-[30rem] text-[1rem] leading-7 text-black/58 sm:text-[1.04rem]">
-                Hongares acompana alquileres en Valencia para propietarios,
-                familias migrantes y organizaciones que necesitan criterio,
-                mediacion y presencia local.
+                Guiamos su camino en Valencia. Hongares es el aliado
+                estrategico para propietarios y familias migrantes que exigen
+                una gestion con criterio, cercania y vision local.
               </p>
 
-              <div className="mt-8 flex flex-wrap items-center gap-5">
-                <a href="#discover" className="button-primary">
-                  Ver la propuesta
-                </a>
-                <div className="inline-flex items-center gap-2 text-sm font-semibold text-black">
-                  <Star className="h-4 w-4 fill-[#4b6bff] text-[#4b6bff]" />
-                  <span>4.9</span>
+                <div className="mt-8 flex flex-wrap items-center gap-5">
+                  <a href="#discover" className="button-primary">
+                    Explorar propuesta
+                  </a>
                 </div>
-              </div>
             </Reveal>
 
             <Reveal delay={0.08}>
@@ -285,28 +282,12 @@ function App() {
                 style={{ y: heroImageY, scale: heroImageScale }}
                 className="relative mx-auto w-full max-w-[560px]"
               >
-                <div className="hero-photo overflow-hidden rounded-[28px] border border-black/[0.06] bg-[#f3f4f6] shadow-[0_28px_60px_rgba(16,17,20,0.08)]">
+                <div className="hero-photo overflow-hidden rounded-[28px] border border-black/[0.06] bg-[#fff8e8] shadow-[0_28px_60px_rgba(75,93,118,0.12)]">
                   <img
                     src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1400&q=80"
                     alt="Mesa clara con plantas y cuaderno"
                     className="h-full w-full object-cover"
                   />
-                </div>
-
-                <div className="absolute bottom-5 left-5 inline-flex items-center gap-3 rounded-full bg-white px-3 py-2 shadow-[0_16px_34px_rgba(16,17,20,0.12)]">
-                  <div className="flex -space-x-3">
-                    {teamCards.map((item) => (
-                      <img
-                        key={item.title}
-                        src={item.image}
-                        alt={item.title}
-                        className="h-9 w-9 rounded-full border-2 border-white object-cover"
-                      />
-                    ))}
-                  </div>
-                  <span className="text-sm font-semibold tracking-[-0.03em] text-[#101114]">
-                    120+ casos
-                  </span>
                 </div>
               </motion.div>
             </Reveal>
@@ -334,14 +315,8 @@ function App() {
         <section id="resumen" className="page-shell py-16 sm:py-20 lg:py-24">
           <div className="grid gap-10">
             <Reveal className="mx-auto max-w-[72rem] text-center">
-              <h2 className="text-[clamp(2.7rem,5.4vw,4.7rem)] font-semibold leading-[0.92] tracking-[-0.075em] text-[#111217]">
-                <span className="block md:whitespace-nowrap">
-                  Una agencia para <span className="text-black/28">casos</span>{' '}
-                  donde
-                </span>
-                <span className="block md:whitespace-nowrap">
-                  el contexto cambia la decision
-                </span>
+              <h2 className="text-[clamp(2.7rem,5.4vw,4.7rem)] font-semibold leading-[0.92] tracking-[-0.075em] text-[#4b5d76]">
+                Donde cada detalle define tu proxima gran decision
               </h2>
             </Reveal>
           </div>
@@ -360,13 +335,17 @@ function App() {
         </section>
 
         <section id="discover" className="page-shell py-4 sm:py-6 lg:py-8">
-          <Reveal className="mx-auto max-w-[34rem] text-center">
-            <h2 className="text-[clamp(2.5rem,5.2vw,4.2rem)] font-semibold leading-[0.94] tracking-[-0.07em] text-[#111217]">
-              Descubre <span className="text-black/28">Hongares</span>
+          <Reveal className="mx-auto max-w-[52rem] text-center">
+            <h2 className="text-[clamp(2.5rem,5.2vw,4.2rem)] font-semibold leading-[0.94] tracking-[-0.07em] text-[#4b5d76]">
+              <span className="block md:whitespace-nowrap">
+                Mucho mas que una agencia,
+              </span>
+              <span className="block md:whitespace-nowrap text-black/28">
+                somos Hongares
+              </span>
             </h2>
             <p className="mt-3 text-sm leading-6 text-black/54">
-              Una lectura mas clara de la vivienda, la migracion y la
-              mediacion en la misma operacion.
+              Nuestra mision: Alquileres con claridad absoluta.
             </p>
           </Reveal>
 
@@ -392,12 +371,12 @@ function App() {
         <section id="equipo" className="page-shell py-16 sm:py-20 lg:py-24">
           <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
             <Reveal className="max-w-[36rem]">
-              <h2 className="text-[clamp(2.6rem,5.4vw,4.1rem)] font-semibold leading-[0.94] tracking-[-0.07em] text-[#111217]">
-                Las caras de <span className="text-black/28">Hongares</span>
+              <h2 className="text-[clamp(2.6rem,5.4vw,4.1rem)] font-semibold leading-[0.94] tracking-[-0.07em] text-[#4b5d76]">
+                Elegir <span className="text-black/28">Hongares</span> es elegir la verdad
               </h2>
               <p className="mt-3 max-w-[31rem] text-sm leading-6 text-black/54">
-                Mediacion, coordinacion y presencia local para procesos de
-                alquiler que necesitan mas cuidado y menos ruido.
+                No buscamos "inquilinos", conectamos personas con espacios que
+                realmente encajan con su realidad actual
               </p>
             </Reveal>
 
@@ -412,7 +391,7 @@ function App() {
             {teamCards.map((card, index) => (
               <Reveal key={card.title} delay={0.08 * index}>
                 <article className="team-card">
-                  <div className="overflow-hidden rounded-[20px] bg-[#f4f5f7]">
+                  <div className="overflow-hidden rounded-[20px] bg-[#fff8e8]">
                     <img
                       src={card.image}
                       alt={card.title}
@@ -421,14 +400,14 @@ function App() {
                   </div>
                   <div className="mt-4 flex items-start justify-between gap-4">
                     <div className="max-w-[22rem]">
-                      <h3 className="text-[1.32rem] font-semibold tracking-[-0.04em] text-[#111217]">
+                      <h3 className="text-[1.32rem] font-semibold tracking-[-0.04em] text-[#4b5d76]">
                         {card.title}
                       </h3>
                       <p className="mt-2 text-sm leading-6 text-black/58">
                         {card.description}
                       </p>
                     </div>
-                    <div className="mt-1 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#f1f3f7] text-black/48">
+                    <div className="mt-1 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#fff2c7] text-[#4b5d76]/70">
                       <ArrowUpRight className="h-4 w-4" />
                     </div>
                   </div>
@@ -441,11 +420,11 @@ function App() {
         <section className="page-shell pb-20 pt-2 sm:pb-24" id="testimonios">
           <Reveal className="max-w-[42rem]">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-              <h2 className="max-w-[32rem] text-[clamp(2.6rem,5.5vw,4.15rem)] font-semibold leading-[0.94] tracking-[-0.075em] text-[#111217]">
-                Elegida por <span className="text-black/28">quienes</span>{' '}
-                necesitan claridad
+              <h2 className="max-w-[32rem] text-[clamp(2.6rem,5.5vw,4.15rem)] font-semibold leading-[0.94] tracking-[-0.075em] text-[#4b5d76]">
+                Confianza real, <span className="text-black/28">contada</span>{' '}
+                por quienes la viven
               </h2>
-              <div className="inline-flex items-center gap-3 rounded-full bg-[#f5f6f8] px-4 py-2 text-sm font-medium text-black/62">
+              <div className="inline-flex items-center gap-3 rounded-full bg-[#fff6de] px-4 py-2 text-sm font-medium text-black/62">
                 <div className="flex -space-x-2">
                   {teamCards.slice(0, 2).map((item) => (
                     <img
@@ -465,7 +444,7 @@ function App() {
             {reviews.map((review, index) => (
               <Reveal key={review.title} delay={0.08 * index}>
                 <article className="review-card">
-                  <div className="flex items-center gap-1 text-[#f6b31e]">
+                  <div className="flex items-center gap-1 text-[#f2c44d]">
                     {Array.from({ length: 5 }).map((_, starIndex) => (
                       <Star
                         key={`${review.title}-${starIndex}`}
@@ -477,7 +456,7 @@ function App() {
                     {review.text}
                   </p>
                   <div className="mt-6 border-t border-black/[0.06] pt-4">
-                    <p className="text-sm font-semibold tracking-[-0.03em] text-[#111217]">
+                    <p className="text-sm font-semibold tracking-[-0.03em] text-[#4b5d76]">
                       {review.title}
                     </p>
                     <p className="mt-1 text-xs uppercase tracking-[0.12em] text-black/40">
@@ -494,23 +473,20 @@ function App() {
           <Reveal className="contact-cta">
             <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
               <div className="max-w-[36rem]">
-                <p className="text-[0.74rem] font-semibold uppercase tracking-[0.22em] text-[#4b6bff]">
+                <p className="text-[0.74rem] font-semibold uppercase tracking-[0.22em] text-[#4b5d76]">
                   Contacto
                 </p>
-                <h2 className="mt-4 text-[clamp(2.8rem,5.7vw,4.9rem)] font-semibold leading-[0.93] tracking-[-0.075em] text-[#111217]">
-                  Si el caso necesita contexto, aqui empieza la conversacion.
+                <h2 className="mt-4 text-[clamp(2.8rem,5.7vw,4.9rem)] font-semibold leading-[0.93] tracking-[-0.075em] text-[#4b5d76]">
+                  Menos dudas, mas contexto. Hablemos hoy
                 </h2>
                 <p className="mt-5 max-w-[32rem] text-[1rem] leading-7 text-black/58">
-                  Hongares trabaja con propietarios, familias y entidades que
-                  necesitan una gestion clara, local y bien acompanada.
+                  Soluciones reales para propietarios y familias. Unimos vision
+                  local y gestion impecable para que nunca camines solo.
                 </p>
 
                 <div className="mt-8 flex flex-wrap gap-4">
                   <a href={mailHref} className="button-primary">
-                    Escribir ahora
-                  </a>
-                  <a href={phoneHref} className="button-outline">
-                    Llamar
+                    Iniciar conversacion
                   </a>
                 </div>
               </div>
@@ -527,14 +503,14 @@ function App() {
                         rel={item.href.startsWith('http') ? 'noreferrer' : undefined}
                         className="contact-card"
                       >
-                        <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#eef3ff] text-[#4b6bff]">
+                        <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#fff2c7] text-[#4b5d76]">
                           <Icon className="h-5 w-5" />
                         </div>
                         <div className="min-w-0 flex-1">
                           <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-black/38">
                             {item.label}
                           </p>
-                          <p className="mt-2 text-[1.05rem] font-semibold leading-6 tracking-[-0.03em] text-[#111217]">
+                          <p className="mt-2 text-[1.05rem] font-semibold leading-6 tracking-[-0.03em] text-[#4b5d76]">
                             {item.value}
                           </p>
                           <p className="mt-2 text-sm leading-6 text-black/54">
@@ -554,7 +530,7 @@ function App() {
         </section>
       </main>
 
-      <footer className="border-t border-black/[0.06] bg-[#fafbfe] pb-8 pt-10">
+      <footer className="border-t border-black/[0.06] bg-[#fff8e8] pb-8 pt-10">
         <div className="page-shell">
           <div className="grid gap-10 lg:grid-cols-[1.2fr_0.7fr_0.9fr]">
             <div className="max-w-[24rem]">

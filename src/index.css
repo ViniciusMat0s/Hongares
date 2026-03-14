@@ -8,6 +8,15 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --brand-dark: #4b5d76;
+    --brand-dark-hover: #3f4f66;
+    --brand-yellow: #f2c44d;
+    --brand-yellow-hover: #e1b338;
+    --brand-yellow-soft: #fff2c7;
+    --brand-paper: #fff8e8;
+  }
+
   * {
     box-sizing: border-box;
   }
@@ -20,7 +29,7 @@
     margin: 0;
     min-width: 320px;
     background: #ffffff;
-    color: #101114;
+    color: var(--brand-dark);
     font-family: 'Manrope', sans-serif;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
@@ -42,8 +51,8 @@
   }
 
   ::selection {
-    background: rgba(75, 107, 255, 0.18);
-    color: #101114;
+    background: rgba(242, 196, 77, 0.32);
+    color: var(--brand-dark);
   }
 
   #root {
@@ -64,7 +73,7 @@
     font-weight: 500;
     letter-spacing: -0.02em;
     transition: color 0.3s ease;
-    color: rgba(0, 0, 0, 0.56);
+    color: rgba(75, 93, 118, 0.72);
   }
 
   .button-primary {
@@ -72,7 +81,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 999px;
-    background: #3563ff;
+    background: var(--brand-dark);
     padding: 0.75rem 1.5rem;
     font-size: 0.875rem;
     font-weight: 600;
@@ -88,12 +97,12 @@
     align-items: center;
     justify-content: center;
     border-radius: 999px;
-    background: #3563ff;
+    background: var(--brand-yellow);
     padding: 0.625rem 1.25rem;
     font-size: 0.875rem;
     font-weight: 600;
     letter-spacing: -0.02em;
-    color: #fff;
+    color: var(--brand-dark);
     transition:
       transform 0.3s ease,
       background-color 0.3s ease;
@@ -104,13 +113,13 @@
     align-items: center;
     justify-content: center;
     border-radius: 999px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(75, 93, 118, 0.16);
+    background: rgba(255, 255, 255, 0.86);
     padding: 0.75rem 1.5rem;
     font-size: 0.875rem;
     font-weight: 600;
     letter-spacing: -0.02em;
-    color: #101114;
+    color: var(--brand-dark);
     transition:
       transform 0.3s ease,
       border-color 0.3s ease,
@@ -130,15 +139,15 @@
     font-weight: 600;
     line-height: 1;
     letter-spacing: -0.05em;
-    color: rgba(0, 0, 0, 0.16);
+    color: rgba(75, 93, 118, 0.2);
   }
 
   .media-frame {
     position: relative;
     overflow: hidden;
     border-radius: 30px;
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    box-shadow: 0 24px 54px rgba(16, 17, 20, 0.08);
+    border: 1px solid rgba(75, 93, 118, 0.1);
+    box-shadow: 0 24px 54px rgba(75, 93, 118, 0.12);
     aspect-ratio: 2.55 / 1.35;
   }
 
@@ -149,19 +158,19 @@
 
   .review-card {
     @apply rounded-[24px] bg-white p-6;
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    box-shadow: 0 18px 42px rgba(16, 17, 20, 0.04);
+    border: 1px solid rgba(75, 93, 118, 0.08);
+    box-shadow: 0 18px 42px rgba(75, 93, 118, 0.06);
   }
 
   .contact-cta {
     overflow: hidden;
     border-radius: 32px;
-    border: 1px solid rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(75, 93, 118, 0.08);
     background:
-      radial-gradient(circle at top left, rgba(75, 107, 255, 0.12), transparent 28%),
-      linear-gradient(180deg, #f8faff 0%, #f5f7fb 100%);
+      radial-gradient(circle at top left, rgba(242, 196, 77, 0.22), transparent 28%),
+      linear-gradient(180deg, #fff9e9 0%, #fff5df 100%);
     padding: 2rem;
-    box-shadow: 0 26px 70px rgba(16, 17, 20, 0.05);
+    box-shadow: 0 26px 70px rgba(75, 93, 118, 0.08);
   }
 
   .contact-card {
@@ -169,7 +178,7 @@
     align-items: flex-start;
     gap: 1rem;
     border-radius: 24px;
-    border: 1px solid rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(75, 93, 118, 0.08);
     background: rgba(255, 255, 255, 0.88);
     padding: 1.25rem;
     transition:
@@ -186,8 +195,8 @@
     align-items: center;
     justify-content: center;
     border-radius: 999px;
-    background: #f1f3f7;
-    color: rgba(0, 0, 0, 0.45);
+    background: var(--brand-yellow-soft);
+    color: rgba(75, 93, 118, 0.72);
     transition:
       background-color 0.3s ease,
       color 0.3s ease;
@@ -199,29 +208,36 @@
 
   .nav-link:hover,
   .footer-link:hover {
-    color: #000;
+    color: var(--brand-dark);
   }
 
   .button-primary:hover,
   .button-blue-ghost:hover {
     transform: translateY(-2px);
-    background: #244ef0;
+  }
+
+  .button-primary:hover {
+    background: var(--brand-dark-hover);
+  }
+
+  .button-blue-ghost:hover {
+    background: var(--brand-yellow-hover);
   }
 
   .button-outline:hover {
     transform: translateY(-2px);
-    border-color: rgba(0, 0, 0, 0.16);
-    background: #fff;
+    border-color: rgba(75, 93, 118, 0.24);
+    background: var(--brand-yellow-soft);
   }
 
   .contact-card:hover {
     transform: translateY(-2px);
-    border-color: rgba(75, 107, 255, 0.18);
-    box-shadow: 0 20px 40px rgba(16, 17, 20, 0.05);
+    border-color: rgba(242, 196, 77, 0.42);
+    box-shadow: 0 20px 40px rgba(75, 93, 118, 0.08);
   }
 
   .contact-card:hover .contact-card-arrow {
-    background: #3563ff;
+    background: var(--brand-dark);
     color: #fff;
   }
 
