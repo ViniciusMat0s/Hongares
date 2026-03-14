@@ -241,7 +241,7 @@ function App() {
           >
             <BrandMark
               className="h-[44px] w-[168px]"
-              imageClassName="scale-[2.08]"
+              imageClassName="scale-[2.08] -translate-x-[56%] lg:-translate-x-1/2"
             />
           </a>
 
@@ -594,7 +594,7 @@ function App() {
             <div className="mx-auto max-w-[24rem] lg:mx-0">
               <div>
                 <BrandMark
-                  className="h-[52px] w-[188px]"
+                  className="mx-auto h-[52px] w-[188px] lg:mx-0"
                   imageClassName="scale-[1.92]"
                 />
                 <p className="mt-3 text-sm text-black/46">
